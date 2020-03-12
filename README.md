@@ -12,7 +12,7 @@ For the moment it supports 2 types of checks:
 
 ## Installation
 1. Rename *settings-example.php* to *settings.php* and fill in your DB details.
-2. Execute setup.sql on your DB to create tables and sample target.
+2. Execute *setup.sql* on your DB to create tables and sample target.
 3. Setup your cron to execute updateData.php every n minutes.
 
 ## Contributing
