@@ -12,6 +12,33 @@ function getListOfTargets($dbh)
 
 function checkTargets($dbh, $listOfTargets)
 {
+    foreach ($listOfTargets as $target) {
+        switch (type) {
+            //check if the URL serves proper JSON
+            case 'json':
+                if (json_decode(file_get_contents($target['url']), true)) {
+                    insertData($dbh, $target['id'], 1);
+                } else {
+                    insertData($dbh, $target['id'], 0);
+                }
+                break;
+            default:
+                //check if the URL is alive
+                if (file_get_contents($target['url'])) {
+                    insertData($dbh, $target['id'], 1);
+                } else {
+                    insertData($dbh, $target['id'], 0);
+                }
+                break;
+        }
+    }
+}
+
+function insertData($dbh, $targetId, $status)
+{
+    $sql = 'INSERT INTO data (target_id, status, datetime) VALUES (?,?,?)';
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute([$targetId, $status, date('U')]);
 }
 
 try {
