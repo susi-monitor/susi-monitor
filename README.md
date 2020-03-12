@@ -1,2 +1,2 @@
 # susi-monitor
-SUper SImple uptime monitor
+**SU**per **SI**mple uptime monitor
