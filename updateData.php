@@ -7,7 +7,7 @@ function getListOfTargets($dbh)
     $stmt = $dbh->prepare('SELECT * FROM targets');
     $stmt->execute();
 
-    return $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    return $stmt->fetchAll();
 }
 
 function checkTargets($dbh, $listOfTargets)
@@ -20,9 +20,9 @@ try {
         DB_USER,
         DB_PASSWORD
     );
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $error) {
-    echo "Connection failed: ".$error->getMessage();
+    echo 'Connection failed with error: '.$error->getMessage();
 }
 
 $targets = getListOfTargets($dbh);
