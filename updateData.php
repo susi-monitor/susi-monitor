@@ -32,6 +32,7 @@ function checkTargets($dbh, $listOfTargets)
                 break;
         }
     }
+    return true;
 }
 
 function insertData($dbh, $targetId, $status)
