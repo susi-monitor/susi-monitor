@@ -11,6 +11,9 @@ For the moment it supports 2 types of checks:
 - default - checks if the url is alive and is presenting ANY response
 
 ## Installation
-Rename settings-example.php to settings.php and fill in your DB details.
-Execute setup.sql on your DB to create tables and sample target.
-Setup your cron to execute updateData.php every n minutes.
+1. Rename *settings-example.php* to *settings.php* and fill in your DB details.
+2. Execute setup.sql on your DB to create tables and sample target.
+3. Setup your cron to execute updateData.php every n minutes.
+
+## Contributing
+Only requirement is to keep PSR-12.
