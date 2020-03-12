@@ -13,7 +13,7 @@ function getListOfTargets($dbh)
 function checkTargets($dbh, $listOfTargets)
 {
     foreach ($listOfTargets as $target) {
-        switch (type) {
+        switch ($target['type']) {
             //check if the URL serves proper JSON
             case 'json':
                 if (json_decode(file_get_contents($target['url']), true)) {
