@@ -57,7 +57,7 @@ require_once('settings.php');
 </header>
 
 <main role="main">
-<div style="min-height: 100px;"></div>
+    <div style="min-height: 100px;"></div>
 
     <!-- Uptime boxes
     ================================================== -->
@@ -81,7 +81,8 @@ require_once('settings.php');
     <!-- FOOTER -->
     <footer class="container">
         <p class="float-right"><a href="index.php#">Back to top</a></p>
-        <p><a href="https://github.com/greg-olszewski/susi-monitor">SuSi Monitor v0.1 </a></p>
+        <p><a href="https://github.com/greg-olszewski/susi-monitor">SuSi Monitor
+                v0.1 </a></p>
     </footer>
 </main>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
