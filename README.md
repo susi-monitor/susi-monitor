@@ -17,3 +17,6 @@ For the moment it supports 2 types of checks:
 
 ## Contributing
 Only requirement is to keep PSR-12.
+
+---
+Notes on used libraries etc. - see *LEGAL.md* file.

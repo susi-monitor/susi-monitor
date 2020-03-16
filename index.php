@@ -65,59 +65,13 @@ require_once('settings.php');
 
     <div class="container uptime">
 
-        <!-- Three columns of text below the carousel -->
         <div class="row">
             <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140"
-                     height="140" xmlns="http://www.w3.org/2000/svg"
-                     preserveAspectRatio="xMidYMid slice" focusable="false"
-                     role="img" aria-label="Placeholder: 140x140"><title>
-                        Placeholder</title>
-                    <rect width="100%" height="100%" fill="#777"/>
-                    <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
-                </svg>
-                <h2>TARGET</h2>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis
-                    euismod. Nullam id dolor id nibh ultricies vehicula ut id
-                    elit. Morbi leo risus, porta ac consectetur ac, vestibulum
-                    at eros. Praesent commodo cursus magna.</p>
-                <p><a class="btn btn-secondary" href="index.php#"
-                      role="button">View details &raquo;</a></p>
-            </div><!-- /.col-lg-4 -->
-            <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140"
-                     height="140" xmlns="http://www.w3.org/2000/svg"
-                     preserveAspectRatio="xMidYMid slice" focusable="false"
-                     role="img" aria-label="Placeholder: 140x140"><title>
-                        Placeholder</title>
-                    <rect width="100%" height="100%" fill="#777"/>
-                    <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
-                </svg>
-                <h2>TARGET</h2>
-                <p>Duis mollis, est non commodo luctus, nisi erat porttitor
-                    ligula, eget lacinia odio sem nec elit. Cras mattis
-                    consectetur purus sit amet fermentum. Fusce dapibus, tellus
-                    ac cursus commodo, tortor mauris condimentum nibh.</p>
-                <p><a class="btn btn-secondary" href="index.php#"
-                      role="button">View details &raquo;</a></p>
-            </div><!-- /.col-lg-4 -->
-            <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140"
-                     height="140" xmlns="http://www.w3.org/2000/svg"
-                     preserveAspectRatio="xMidYMid slice" focusable="false"
-                     role="img" aria-label="Placeholder: 140x140"><title>
-                        Placeholder</title>
-                    <rect width="100%" height="100%" fill="#777"/>
-                    <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
-                </svg>
-                <h2>TARGET</h2>
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
-                    egestas eget quam. Vestibulum id ligula porta felis euismod
-                    semper. Fusce dapibus, tellus ac cursus commodo, tortor
-                    mauris condimentum nibh, ut fermentum massa justo sit amet
-                    risus.</p>
-                <p><a class="btn btn-secondary" href="index.php#"
-                      role="button">View details &raquo;</a></p>
+                <canvas id="uptimechart-target0"></canvas>
+                <h2>Example domain</h2>
+                <p><a href="https://example.com">https://example.com</a></p>
+                <p><a class="btn btn-success"
+                      role="button">UP </a></p>
             </div><!-- /.col-lg-4 -->
         </div><!-- /.row -->
 
@@ -133,10 +87,30 @@ require_once('settings.php');
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
 <script src="js/bootstrap.bundle.min.js"
         integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
         crossorigin="anonymous"></script>
+<script>
+    var ctx = document.getElementById('uptimechart-target0').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'line',
+
+        data: {
+            labels: ['08:00', '08:05', '08:10', '08:15', '08:20', '08:25', '08:30'],
+            datasets: [{
+                label: 'uptime',
+                backgroundColor: 'rgb(34,146,255)',
+                borderColor: 'rgb(34,146,255)',
+                data: [0, 1, 1, 0, 1, 1, 1]
+            }]
+        },
+
+        // Configuration options go here
+        options: {}
+    });
+</script>
 </body>
 </html>
 

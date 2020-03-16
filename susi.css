@@ -17,3 +17,12 @@ body {
     margin-right: .75rem;
     margin-left: .75rem;
 }
+
+.btn-success {
+    color: #fff !important;
+}
+
+.btn-failure {
+    color:#fff !important;
+    background-color: #de1717;
+}
