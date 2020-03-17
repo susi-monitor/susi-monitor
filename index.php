@@ -134,7 +134,7 @@ require_once('settings.php');
     <footer class="container">
         <p class="float-right"><a href="index.php#">Back to top</a></p>
         <p><a href="https://github.com/greg-olszewski/susi-monitor">SuSi Monitor
-                v0.1 </a></p>
+                v0.1 </a>&nbsp; Presented time in <?php echo date('T') ?> timezone.</p>
     </footer>
 </main>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -150,7 +150,8 @@ foreach ($targetData as $key => $data) {
     $labels = '';
     $values = '';
     foreach ($data as $check) {
-        $labels .= ",'".$check['datetime']."'";
+        $formattedDate = date('H:i:s', $check['datetime']);
+        $labels .= ",'".$formattedDate."'";
         $values .= ','.$check['status'];
     }
     echo "<script>var ctx = document.getElementById('uptimechart-target".$key."').getContext('2d');
