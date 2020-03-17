@@ -134,7 +134,7 @@ require_once('settings.php');
     <footer class="container">
         <p class="float-right"><a href="index.php#">Back to top</a></p>
         <p><a href="https://github.com/greg-olszewski/susi-monitor">SuSi Monitor
-                v0.1 </a>&nbsp; Presented time in <?php echo date('T') ?> timezone.</p>
+                v0.1 </a>&nbsp; All times are in <?php echo date('T') ?> .</p>
     </footer>
 </main>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
