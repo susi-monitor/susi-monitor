@@ -11,7 +11,7 @@ require_once('settings.php');
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="SuSi Monitor">
     <meta name="author" content="Grzegorz Olszewski <grzegorz@olszewski.in>">
-    <title>SuSi Monitor</title>
+    <title><?=PAGE_TITLE?>></title>
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           rel="stylesheet">
@@ -66,13 +66,65 @@ require_once('settings.php');
     <div class="container uptime">
 
         <div class="row">
-            <div class="col-lg-4">
+
+            <?php
+
+            try {
+                $dbh = new PDO(
+                    'mysql:host='.DB_HOST.';port='.DB_PORT.';dbname='.DB_NAME
+                    .'',
+                    DB_USER,
+                    DB_PASSWORD
+                );
+                $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            } catch (PDOException $error) {
+                echo 'Connection failed with error: '.$error->getMessage();
+            }
+
+            $stmt = $dbh->query('SELECT * FROM targets');
+            $targets = $stmt->fetchAll();
+            foreach ($targets as $target) {
+                echo '<div class="col-lg-4">
+                <canvas id="uptimechart-target'.$target['id'].'"></canvas>
+                <h2>'.$target['name'].'</h2>
+                <p><a href="'.$target['url'].'">'.$target['url'].'</a></p>
+                <p>';
+
+                $stmt = $dbh->prepare(
+                    'SELECT * FROM data WHERE target_id = :target_id ORDER BY datetime DESC LIMIT 1'
+                );
+                $stmt->execute(['target_id' => $target['id']]);
+                $lastRow = $stmt->fetch();
+
+                // last status check
+                if ($lastRow['status'] == 1) {
+                    echo '<a class="btn btn-success"
+                      role="button">UP</a>';
+                } else {
+                    echo '<a class="btn btn-failure"
+                      role="button">DOWN</a>';
+                }
+
+
+                echo '
+</p>
+            </div><!-- /.col-lg-4 -->';
+                $stmt = $dbh->prepare(
+                    'SELECT * FROM data WHERE target_id = :target_id LIMIT 10'
+                );
+                $stmt->execute(['target_id' => $target['id']]);
+                $targetData[$target['id']] = $stmt->fetchAll();
+            }
+
+            $pdo = null;
+            ?>
+            <!--<div class="col-lg-4">
                 <canvas id="uptimechart-target0"></canvas>
                 <h2>Example domain</h2>
                 <p><a href="https://example.com">https://example.com</a></p>
                 <p><a class="btn btn-success"
                       role="button">UP </a></p>
-            </div><!-- /.col-lg-4 -->
+            </div>--><!-- /.col-lg-4 -->
         </div><!-- /.row -->
 
     </div><!-- /.container -->
@@ -93,25 +145,33 @@ require_once('settings.php');
 <script src="js/bootstrap.bundle.min.js"
         integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
         crossorigin="anonymous"></script>
-<script>
-    var ctx = document.getElementById('uptimechart-target0').getContext('2d');
+<?php
+foreach ($targetData as $key=>$data) {
+    $labels = '';
+    $values = '';
+    foreach ($data as $check){
+        $labels .= ",'".$check['datetime']."'";
+        $values .= ','.$check['status'];
+    }
+    echo "<script>var ctx = document.getElementById('uptimechart-target".$key."').getContext('2d');
     var chart = new Chart(ctx, {
         type: 'line',
 
         data: {
-            labels: ['08:00', '08:05', '08:10', '08:15', '08:20', '08:25', '08:30'],
+            labels: [".$labels."],
             datasets: [{
                 label: 'uptime',
                 backgroundColor: 'rgb(34,146,255)',
                 borderColor: 'rgb(34,146,255)',
-                data: [0, 1, 1, 0, 1, 1, 1]
+                data: [".$values."]
             }]
         },
 
         // Configuration options go here
         options: {}
-    });
-</script>
+    });</script>";
+}
+?>
 </body>
 </html>
 
