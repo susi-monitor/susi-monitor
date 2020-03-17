@@ -11,7 +11,7 @@ require_once('settings.php');
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="SuSi Monitor">
     <meta name="author" content="Grzegorz Olszewski <grzegorz@olszewski.in>">
-    <title><?=PAGE_TITLE?>></title>
+    <title><?= PAGE_TITLE ?>></title>
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           rel="stylesheet">
@@ -146,10 +146,10 @@ require_once('settings.php');
         integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
         crossorigin="anonymous"></script>
 <?php
-foreach ($targetData as $key=>$data) {
+foreach ($targetData as $key => $data) {
     $labels = '';
     $values = '';
-    foreach ($data as $check){
+    foreach ($data as $check) {
         $labels .= ",'".$check['datetime']."'";
         $values .= ','.$check['status'];
     }
