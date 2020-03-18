@@ -17,7 +17,14 @@ function callURL($url, $returnHTTPCode = false)
     curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, 0);
     curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, 0);
-    curl_setopt($handle,CURLOPT_USERAGENT,UA_STRING);
+    curl_setopt($handle, CURLOPT_USERAGENT, UA_STRING);
+
+    if (PROXY_ENABLED == 1) {
+        curl_setopt($handle, CURLOPT_HTTPPROXYTUNNEL, PROXY_ENABLED);
+        curl_setopt($handle, CURLOPT_PROXY, PROXY_HOST);
+        curl_setopt($handle, CURLOPT_PROXYPORT, PROXY_PORT);
+        curl_setopt($handle, CURLOPT_PROXYUSERPWD, PROXY_CREDENTIALS);
+    }
 
     $output = curl_exec($handle);
     curl_close($handle);

@@ -9,4 +9,11 @@ define('DB_NAME', 'susi');
 // Customized title
 define('PAGE_TITLE', 'SuSi Monitor');
 
+//custom User Agent string
 define('UA_STRING', 'SuSi Monitor v0.1');
+
+//proxy settings
+define('PROXY_ENABLED', 0);
+define('PROXY_HOST', 'exampleproxy.local');
+define('PROXY_PORT', 8080);
+define('PROXY_CREDENTIALS', "someuser:somepassword");
