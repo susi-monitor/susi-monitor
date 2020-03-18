@@ -10,13 +10,36 @@ function getListOfTargets($dbh)
     return $stmt->fetchAll();
 }
 
+function callURL($url, $returnHTTPCode = false)
+{
+    $handle = curl_init();
+    curl_setopt($handle, CURLOPT_URL, $url);
+    curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, 0);
+
+    $output = curl_exec($handle);
+    curl_close($handle);
+
+    if ($returnHTTPCode === true) {
+        if (!curl_errno($handle)) {
+            $output = curl_getinfo($handle, CURLINFO_RESPONSE_CODE);
+        } else {
+            $output = curl_errno($handle);
+        }
+    }
+
+    return $output;
+}
+
 function checkTargets($dbh, $listOfTargets)
 {
     foreach ($listOfTargets as $target) {
         switch ($target['type']) {
-            //check if the URL serves proper JSON
             case 'json':
-                if (json_decode(file_get_contents($target['url']), true)) {
+                //check if the URL serves proper JSON
+                $output = callURL($target['url']);
+                if (json_decode($output, true)) {
                     insertData($dbh, $target['id'], 1);
                 } else {
                     insertData($dbh, $target['id'], 0);
@@ -24,7 +47,8 @@ function checkTargets($dbh, $listOfTargets)
                 break;
             default:
                 //check if the URL is alive
-                if (file_get_contents($target['url'])) {
+                $HTTPCode = callURL($target['url'], true);
+                if ($HTTPCode == 200) {
                     insertData($dbh, $target['id'], 1);
                 } else {
                     insertData($dbh, $target['id'], 0);
@@ -32,6 +56,7 @@ function checkTargets($dbh, $listOfTargets)
                 break;
         }
     }
+
     return true;
 }
 
