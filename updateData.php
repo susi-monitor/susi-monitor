@@ -17,6 +17,7 @@ function callURL($url, $returnHTTPCode = false)
     curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, 0);
     curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($handle,CURLOPT_USERAGENT,UA_STRING);
 
     $output = curl_exec($handle);
     curl_close($handle);

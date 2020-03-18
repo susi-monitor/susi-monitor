@@ -8,3 +8,5 @@ define('DB_NAME', 'susi');
 
 // Customized title
 define('PAGE_TITLE', 'SuSi Monitor');
+
+define('UA_STRING', 'SuSi Monitor v0.1');
