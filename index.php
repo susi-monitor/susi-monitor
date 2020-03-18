@@ -150,7 +150,7 @@ foreach ($targetData as $key => $data) {
     $labels = '';
     $values = '';
     foreach ($data as $check) {
-        $formattedDate = date('H:i:s', $check['datetime']);
+        $formattedDate = date('d/m/y H:i', $check['datetime']);
         $labels .= ",'".$formattedDate."'";
         $values .= ','.$check['status'];
     }
