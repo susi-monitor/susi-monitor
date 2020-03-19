@@ -181,7 +181,7 @@ foreach ($targetData as $key => $data) {
         data: {
             labels: [".$labels."],
             datasets: [{
-                label: 'uptime',
+                label: 'status',
                 backgroundColor: 'rgb(34,146,255)',
                 borderColor: 'rgb(34,146,255)',
                 data: [".$valuesWithLabels."]
