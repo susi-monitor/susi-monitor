@@ -84,10 +84,33 @@ require_once('settings.php');
             $stmt = $dbh->query('SELECT * FROM targets');
             $targets = $stmt->fetchAll();
             foreach ($targets as $target) {
-                echo '<div class="col-lg-4">
+                echo '<div class="col-lg-4" style="border: 1px solid #80808024;">
                 <canvas id="uptimechart-target'.$target['id'].'"></canvas>
                 <h2>'.$target['name'].'</h2>
-                <p><a href="'.$target['url'].'">'.$target['url'].'</a></p>
+                <hr>
+            <p>
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#urlModal'.$target['id'].'"">🌎&nbsp;URL</button>
+              </p>
+<!-- URL modal -->
+<div class="modal fade" id="urlModal'.$target['id'].'" tabindex="-1" role="dialog" aria-labelledby="urlModal'.$target['id'].'Label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="urlModal'.$target['id'].'Label">URL of monitored service</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <a href="'.$target['url'].'">'.$target['url'].'</a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
                 <p>';
 
                 $stmt = $dbh->prepare(
@@ -99,10 +122,10 @@ require_once('settings.php');
                 // last status check
                 if ($lastRow['status'] == 1) {
                     echo '<a class="btn btn-success"
-                      role="button">UP</a>';
+                      role="button">🖥️&nbsp;STATUS:&nbsp;UP</a>';
                 } else {
                     echo '<a class="btn btn-failure"
-                      role="button">DOWN</a>';
+                      role="button">🖥️&nbsp;STATUS:&nbsp;DOWN</a>';
                 }
 
 
@@ -137,14 +160,10 @@ require_once('settings.php');
                 v0.1 </a>&nbsp; All times are in <?php echo date('T') ?> .</p>
     </footer>
 </main>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
-<script src="js/bootstrap.bundle.min.js"
-        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
-        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <?php
 foreach ($targetData as $key => $data) {
     $labels = '';
