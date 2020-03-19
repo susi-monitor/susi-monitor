@@ -144,13 +144,6 @@ require_once('settings.php');
 
             $pdo = null;
             ?>
-            <!--<div class="col-lg-4">
-                <canvas id="uptimechart-target0"></canvas>
-                <h2>Example domain</h2>
-                <p><a href="https://example.com">https://example.com</a></p>
-                <p><a class="btn btn-success"
-                      role="button">UP </a></p>
-            </div>--><!-- /.col-lg-4 -->
         </div><!-- /.row -->
 
     </div><!-- /.container -->
