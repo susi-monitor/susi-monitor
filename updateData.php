@@ -10,7 +10,7 @@ function getListOfTargets($dbh)
     return $stmt->fetchAll();
 }
 
-function callURL($url, $returnHTTPCode = false)
+function callURL($url, $returnHTTPCode = false, $checkIfJSONContentType = false)
 {
     $handle = curl_init();
     curl_setopt($handle, CURLOPT_URL, $url);
@@ -27,7 +27,6 @@ function callURL($url, $returnHTTPCode = false)
     }
 
     $output = curl_exec($handle);
-    curl_close($handle);
 
     if ($returnHTTPCode === true) {
         if (!curl_errno($handle)) {
@@ -35,7 +34,17 @@ function callURL($url, $returnHTTPCode = false)
         } else {
             $output = curl_errno($handle);
         }
+        print_r($output);
     }
+
+    if ($checkIfJSONContentType === true) {
+        $contentType = curl_getinfo($handle, CURLINFO_CONTENT_TYPE);
+        print_r($contentType);
+        if (strpos($contentType, 'json') === false) {
+            return false;
+        }
+    }
+    curl_close($handle);
 
     return $output;
 }
@@ -46,7 +55,7 @@ function checkTargets($dbh, $listOfTargets)
         switch ($target['type']) {
             case 'json':
                 //check if the URL serves proper JSON
-                $output = callURL($target['url']);
+                $output = callURL($target['url'], false, true);
                 if (json_decode($output, true)) {
                     insertData($dbh, $target['id'], 1);
                 } else {
@@ -56,7 +65,7 @@ function checkTargets($dbh, $listOfTargets)
             default:
                 //check if the URL is alive
                 $HTTPCode = callURL($target['url'], true);
-                if ($HTTPCode == 200) {
+                if (in_array($HTTPCode, ['200', '301', '302'], false)) {
                     insertData($dbh, $target['id'], 1);
                 } else {
                     insertData($dbh, $target['id'], 0);

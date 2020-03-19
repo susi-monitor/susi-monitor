@@ -125,10 +125,10 @@ require_once('settings.php');
                 // last status check
                 if ($lastRow['status'] == 1) {
                     echo '<a class="btn btn-success"
-                      role="button">🖥️&nbsp;STATUS:&nbsp;UP</a>';
+                      role="button" disabled>🖥️&nbsp;STATUS:&nbsp;UP</a>';
                 } else {
                     echo '<a class="btn btn-failure"
-                      role="button">🖥️&nbsp;STATUS:&nbsp;DOWN</a>';
+                      role="button" disabled>🖥️&nbsp;STATUS:&nbsp;DOWN</a>';
                 }
 
 
@@ -152,8 +152,8 @@ require_once('settings.php');
     <!-- FOOTER -->
     <footer class="container">
         <p class="float-right"><a href="index.php#">Back to top</a></p>
-        <p><a href="https://github.com/greg-olszewski/susi-monitor">SuSi Monitor
-                v0.1 </a>&nbsp; All times are in <?php echo date('T') ?> .</p>
+        <p><small><a href="https://github.com/greg-olszewski/susi-monitor">SuSi Monitor
+                v0.1 </a>&nbsp; All times are in <?php echo date('T') ?> .</small></p>
     </footer>
 </main>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
