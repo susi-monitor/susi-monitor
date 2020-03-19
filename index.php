@@ -136,7 +136,7 @@ require_once('settings.php');
 </p>
             </div><!-- /.col-lg-4 -->';
                 $stmt = $dbh->prepare(
-                    'SELECT * FROM data WHERE target_id = :target_id LIMIT 10'
+                    'SELECT * FROM data WHERE target_id = :target_id LIMIT 12'
                 );
                 $stmt->execute(['target_id' => $target['id']]);
                 $targetData[$target['id']] = $stmt->fetchAll();
