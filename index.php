@@ -84,7 +84,7 @@ require_once('settings.php');
             $stmt = $dbh->query('SELECT * FROM targets');
             $targets = $stmt->fetchAll();
             foreach ($targets as $target) {
-                echo '<div class="col-lg-4" style="border: 1px solid #80808024;">
+                echo '<div class="col-lg-4" style="border: 1px solid #80808024;padding-top: 10px;">
                 <canvas id="uptimechart-target'.$target['id'].'"></canvas>
                 <h2>'.$target['name'].'</h2>
                 <hr>
@@ -173,6 +173,7 @@ foreach ($targetData as $key => $data) {
         $labels .= ",'".$formattedDate."'";
         $values .= ','.$check['status'];
     }
+    $valuesWithLabels = str_replace('1', '"UP"',str_replace('0', '"DOWN"', $values));
     echo "<script>var ctx = document.getElementById('uptimechart-target".$key."').getContext('2d');
     var chart = new Chart(ctx, {
         type: 'line',
@@ -183,12 +184,25 @@ foreach ($targetData as $key => $data) {
                 label: 'uptime',
                 backgroundColor: 'rgb(34,146,255)',
                 borderColor: 'rgb(34,146,255)',
-                data: [".$values."]
+                data: [".$valuesWithLabels."]
             }]
         },
 
         // Configuration options go here
-        options: {}
+        options: {
+            legend: {
+                display: false
+            },
+            scales: {
+            yAxes: [{
+                type: 'category',
+                labels: ['UP', 'DOWN'],
+                 ticks: {
+                    min: 'UP'
+                }
+            }]
+        }
+        }
     });</script>";
 }
 ?>
