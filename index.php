@@ -89,10 +89,13 @@ require_once('settings.php');
                 <h2>'.$target['name'].'</h2>
                 <hr>
             <p>
-              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#urlModal'.$target['id'].'"">🌎&nbsp;URL</button>
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#urlModal'
+                    .$target['id'].'"">🌎&nbsp;URL</button>
               </p>
 <!-- URL modal -->
-<div class="modal fade" id="urlModal'.$target['id'].'" tabindex="-1" role="dialog" aria-labelledby="urlModal'.$target['id'].'Label" aria-hidden="true">
+<div class="modal fade" id="urlModal'.$target['id']
+                    .'" tabindex="-1" role="dialog" aria-labelledby="urlModal'
+                    .$target['id'].'Label" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -173,7 +176,11 @@ foreach ($targetData as $key => $data) {
         $labels .= ",'".$formattedDate."'";
         $values .= ','.$check['status'];
     }
-    $valuesWithLabels = str_replace('1', '"UP"',str_replace('0', '"DOWN"', $values));
+    $valuesWithLabels = str_replace(
+        '1',
+        '"UP"',
+        str_replace('0', '"DOWN"', $values)
+    );
     echo "<script>var ctx = document.getElementById('uptimechart-target".$key."').getContext('2d');
     var chart = new Chart(ctx, {
         type: 'line',
