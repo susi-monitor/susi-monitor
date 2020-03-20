@@ -10,7 +10,7 @@ function getListOfTargets($dbh)
     return $stmt->fetchAll();
 }
 
-function callURL($url, $returnHTTPCode = false)
+function callURL($url, $returnHTTPCode = false, $checkIfJSONContentType = false)
 {
     $handle = curl_init();
     curl_setopt($handle, CURLOPT_URL, $url);
@@ -27,15 +27,31 @@ function callURL($url, $returnHTTPCode = false)
     }
 
     $output = curl_exec($handle);
-    curl_close($handle);
 
     if ($returnHTTPCode === true) {
         if (!curl_errno($handle)) {
-            $output = curl_getinfo($handle, CURLINFO_RESPONSE_CODE);
+            $output = curl_getinfo($handle, CURLINFO_HTTP_CODE);
         } else {
             $output = curl_errno($handle);
         }
     }
+
+    if ($checkIfJSONContentType === true) {
+        if (!curl_errno($handle)) {
+            $responseCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
+            if (in_array($responseCode, ['200', '301', '302'], false)){
+                $contentType = curl_getinfo($handle, CURLINFO_CONTENT_TYPE);
+                if (strpos($contentType, 'json') === false) {
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    curl_close($handle);
 
     return $output;
 }
@@ -46,8 +62,9 @@ function checkTargets($dbh, $listOfTargets)
         switch ($target['type']) {
             case 'json':
                 //check if the URL serves proper JSON
-                $output = callURL($target['url']);
-                if (json_decode($output, true)) {
+                $output = callURL($target['url'], false, true);
+
+                if (json_decode($output, true) && json_last_error() === JSON_ERROR_NONE) {
                     insertData($dbh, $target['id'], 1);
                 } else {
                     insertData($dbh, $target['id'], 0);
@@ -56,7 +73,7 @@ function checkTargets($dbh, $listOfTargets)
             default:
                 //check if the URL is alive
                 $HTTPCode = callURL($target['url'], true);
-                if ($HTTPCode == 200) {
+                if (in_array($HTTPCode, ['200', '301', '302'], false)) {
                     insertData($dbh, $target['id'], 1);
                 } else {
                     insertData($dbh, $target['id'], 0);

@@ -125,10 +125,10 @@ require_once('settings.php');
                 // last status check
                 if ($lastRow['status'] == 1) {
                     echo '<a class="btn btn-success"
-                      role="button">🖥️&nbsp;STATUS:&nbsp;UP</a>';
+                      role="button" disabled>🖥️&nbsp;STATUS:&nbsp;UP</a>';
                 } else {
                     echo '<a class="btn btn-failure"
-                      role="button">🖥️&nbsp;STATUS:&nbsp;DOWN</a>';
+                      role="button" disabled>🖥️&nbsp;STATUS:&nbsp;DOWN</a>';
                 }
 
 
@@ -136,10 +136,10 @@ require_once('settings.php');
 </p>
             </div><!-- /.col-lg-4 -->';
                 $stmt = $dbh->prepare(
-                    'SELECT * FROM data WHERE target_id = :target_id LIMIT 12'
+                    'SELECT * FROM data WHERE target_id = :target_id ORDER BY datetime DESC LIMIT 12'
                 );
                 $stmt->execute(['target_id' => $target['id']]);
-                $targetData[$target['id']] = $stmt->fetchAll();
+                $targetData[$target['id']] = array_reverse($stmt->fetchAll());
             }
 
             $pdo = null;
@@ -152,8 +152,8 @@ require_once('settings.php');
     <!-- FOOTER -->
     <footer class="container">
         <p class="float-right"><a href="index.php#">Back to top</a></p>
-        <p><a href="https://github.com/greg-olszewski/susi-monitor">SuSi Monitor
-                v0.1 </a>&nbsp; All times are in <?php echo date('T') ?> .</p>
+        <p><small><a href="https://github.com/greg-olszewski/susi-monitor">SuSi Monitor
+                    v0.1 </a>&nbsp; All times are in <?php echo date('T') ?> .</small></p>
     </footer>
 </main>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
