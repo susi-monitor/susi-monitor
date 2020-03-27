@@ -153,7 +153,7 @@ require_once('settings.php');
     <footer class="container">
         <p class="float-right"><a href="index.php#">Back to top</a></p>
         <p><small><a href="https://github.com/greg-olszewski/susi-monitor">SuSi Monitor
-                    v0.1 </a>&nbsp; All times are in <?php echo date('T') ?> .</small></p>
+                    v<?php echo RELEASE_VERSION; ?> </a>&nbsp; All times are in <?php echo date('T') ?> .</small></p>
     </footer>
 </main>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
