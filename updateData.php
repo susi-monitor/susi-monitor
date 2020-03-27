@@ -30,17 +30,24 @@ function callURL($url, $returnHTTPCode = false, $checkIfJSONContentType = false)
 
     if ($returnHTTPCode === true) {
         if (!curl_errno($handle)) {
-            $output = curl_getinfo($handle, CURLINFO_RESPONSE_CODE);
+            $output = curl_getinfo($handle, CURLINFO_HTTP_CODE);
         } else {
             $output = curl_errno($handle);
         }
-        print_r($output);
     }
 
     if ($checkIfJSONContentType === true) {
-        $contentType = curl_getinfo($handle, CURLINFO_CONTENT_TYPE);
-        print_r($contentType);
-        if (strpos($contentType, 'json') === false) {
+        if (!curl_errno($handle)) {
+            $responseCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
+            if (in_array($responseCode, ['200', '301', '302'], false)){
+                $contentType = curl_getinfo($handle, CURLINFO_CONTENT_TYPE);
+                if (strpos($contentType, 'json') === false) {
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        } else {
             return false;
         }
     }
@@ -56,7 +63,8 @@ function checkTargets($dbh, $listOfTargets)
             case 'json':
                 //check if the URL serves proper JSON
                 $output = callURL($target['url'], false, true);
-                if (json_decode($output, true)) {
+
+                if (json_decode($output, true) && json_last_error() === JSON_ERROR_NONE) {
                     insertData($dbh, $target['id'], 1);
                 } else {
                     insertData($dbh, $target['id'], 0);
