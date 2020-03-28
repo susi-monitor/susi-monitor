@@ -7,6 +7,7 @@ CREATE TABLE `targets` (
   `name` varchar(256) COLLATE utf8_bin DEFAULT NULL,
   `url` text COLLATE utf8_bin DEFAULT NULL,
   `type` varchar(256) COLLATE utf8_bin DEFAULT NULL
+  `category` varchar(256) COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
