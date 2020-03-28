@@ -93,9 +93,9 @@ function getTargetData($targetId)
                     break;
                 case 'delete':
                     $targetData = getTargetData($_GET['id']);
-                    echo 'Are you sure you want to delete <b>'.$targetData['name'].'</b>?<br>
-<a href="manageAction.php?action=delete&id='.$targetData['id'].'">Yes</a><br>
-<a href="admin.php">No</a>';
+                    echo 'Are you sure you want to delete <b>'.$targetData['name'].'</b>?&nbsp;&nbsp;
+<a href="manageAction.php?action=delete&id='.$targetData['id'].'"><button>Yes</button></a>&nbsp;
+<a href="admin.php"><button>No</button></a>';
                     break;
                 case 'add':
                     //TODO: Implement adding new entry

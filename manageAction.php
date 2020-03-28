@@ -1,5 +1,7 @@
 <?php
 
+require_once('settings.php');
+
 $action = $_GET['action'];
 $targetId = $_GET['id'];
 
@@ -17,6 +19,12 @@ switch ($_GET['action']) {
                 'DELETE FROM targets WHERE id = :target_id'
             );
             $stmt->execute(['target_id' => $targetId]);
+
+            $stmt = $dbh->prepare(
+                'DELETE FROM data WHERE target_id = :target_id'
+            );
+            $stmt->execute(['target_id' => $targetId]);
+
             header('Location: admin.php');
         } catch (PDOException $e) {
             echo $e->getMessage();
