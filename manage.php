@@ -100,7 +100,7 @@ function getTargetData($targetId)
                     break;
                 case 'add':
                     ?>
-                    <form>
+                    <form method="post" action="manageAction.php?action=add">
                         <div class="form-group">
                             <label for="inputName">Name</label>
                             <input type="text" class="form-control" id="inputName" aria-describedby="nameHelp" maxlength="128" required>
