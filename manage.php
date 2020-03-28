@@ -17,7 +17,7 @@ function getTargetData($targetId)
     }
 
     $stmt = $dbh->prepare(
-        'SELECT * FROM targets WHERE target_id = :target_id LIMIT 1'
+        'SELECT * FROM targets WHERE id = :target_id LIMIT 1'
     );
     $stmt->execute(['target_id' => $targetId]);
     $data = $stmt->fetch();
