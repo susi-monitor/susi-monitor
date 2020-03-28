@@ -90,6 +90,7 @@ function getTargetData($targetId)
             switch($_GET['action']){
                 case 'edit':
                     //TODO: Implement editing
+
                     break;
                 case 'delete':
                     $targetData = getTargetData($_GET['id']);
@@ -98,7 +99,35 @@ function getTargetData($targetId)
 <a href="admin.php"><button>No</button></a>';
                     break;
                 case 'add':
-                    //TODO: Implement adding new entry
+                    ?>
+                    <form>
+                        <div class="form-group">
+                            <label for="inputName">Name</label>
+                            <input type="text" class="form-control" id="inputName" aria-describedby="nameHelp">
+                            <small id="emailHelp" class="form-text text-muted">Just a user-friendly name so that user knows what service is checked.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputURL">URL</label>
+                            <input type="text" class="form-control" id="inputURL" aria-describedby="URLHelp">
+                            <small id="URLHelp" class="form-text text-muted">URL of a resource that should be checked.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputType">Type of check</label>
+                            <select class="form-control" id="inputType" aria-describedby="inputTypeHelp">
+                                <option>default</option>
+                                <option>json</option>
+                            </select>
+                            <small id="inputTypeHelp" class="form-text text-muted"><b>default</b> -> check if HTTP response happens and if is a success code
+                                <br><b>json</b> -> same as above AND check if it is a valid JSON</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputCategory">Category (optional)</label>
+                            <input type="text" class="form-control" id="inputCategory" aria-describedby="categoryHelp">
+                            <small id="categoryHelp" class="form-text text-muted">Match one of existing categories or add a new one.</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+            <?php
                 default:
                     break;
             }

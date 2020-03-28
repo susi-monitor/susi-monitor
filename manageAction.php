@@ -24,13 +24,40 @@ switch ($_GET['action']) {
                 'DELETE FROM data WHERE target_id = :target_id'
             );
             $stmt->execute(['target_id' => $targetId]);
-
+            $conn = null;
             header('Location: admin.php');
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
 
-        $conn = null;
+        break;
+    case 'add':
+        try {
+            $dbh = new PDO(
+                'mysql:host='.DB_HOST.';port='.DB_PORT.';dbname='.DB_NAME
+                .'',
+                DB_USER,
+                DB_PASSWORD
+            );
+            $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $data = [
+                'name' => $_POST['inputName'],
+                'url' => $_POST['inputURL'],
+                'type' => $_POST['inputType'],
+                'category' => $_POST['inputCategory']
+            ];
+            $sql = "INSERT INTO targets (name, url, type, category) VALUES (:name, :url, :type, :category)";
+            $stmt= $dbh->prepare($sql);
+            $stmt->execute($data);
+            
+            $conn = null;
+            header('Location: admin.php');
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+
         break;
 }
 
