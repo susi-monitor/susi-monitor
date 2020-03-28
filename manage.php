@@ -103,17 +103,17 @@ function getTargetData($targetId)
                     <form>
                         <div class="form-group">
                             <label for="inputName">Name</label>
-                            <input type="text" class="form-control" id="inputName" aria-describedby="nameHelp">
+                            <input type="text" class="form-control" id="inputName" aria-describedby="nameHelp" maxlength="128" required>
                             <small id="emailHelp" class="form-text text-muted">Just a user-friendly name so that user knows what service is checked.</small>
                         </div>
                         <div class="form-group">
                             <label for="inputURL">URL</label>
-                            <input type="text" class="form-control" id="inputURL" aria-describedby="URLHelp">
+                            <input type="url" class="form-control" id="inputURL" aria-describedby="URLHelp" required>
                             <small id="URLHelp" class="form-text text-muted">URL of a resource that should be checked.</small>
                         </div>
                         <div class="form-group">
                             <label for="inputType">Type of check</label>
-                            <select class="form-control" id="inputType" aria-describedby="inputTypeHelp">
+                            <select class="form-control" id="inputType" aria-describedby="inputTypeHelp" required>
                                 <option>default</option>
                                 <option>json</option>
                             </select>
@@ -122,7 +122,7 @@ function getTargetData($targetId)
                         </div>
                         <div class="form-group">
                             <label for="inputCategory">Category (optional)</label>
-                            <input type="text" class="form-control" id="inputCategory" aria-describedby="categoryHelp">
+                            <input type="text" class="form-control" id="inputCategory" aria-describedby="categoryHelp" maxlength="128">
                             <small id="categoryHelp" class="form-text text-muted">Match one of existing categories or add a new one.</small>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
