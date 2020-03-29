@@ -57,8 +57,32 @@ require_once('settings.php');
 </header>
 
 <main role="main">
-    <div style="min-height: 100px;"></div>
+    <div style="min-height: 50px;"></div>
+    <div style="text-align: center;">
+        <div class="btn-group" role="group" aria-label="Category">
+            <button type="button" class="btn btn-secondary" onclick="location.href = 'index.php';">All</button>
+        <?php
+        try {
+            $dbh = new PDO(
+                'mysql:host='.DB_HOST.';port='.DB_PORT.';dbname='.DB_NAME
+                .'',
+                DB_USER,
+                DB_PASSWORD
+            );
+            $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $error) {
+            echo 'Connection failed with error: '.$error->getMessage();
+        }
 
+        $stmt = $dbh->query('SELECT DISTINCT category FROM targets WHERE category IS NOT NULL');
+        $categories = $stmt->fetchAll();
+        foreach ($categories as $category){
+            echo ' <button type="button" class="btn btn-secondary" onclick="location.href = \'index.php?category='.urlencode($category['category']).'\';">'.$category['category'].'</button>';
+        }
+        ?>
+
+
+    </div></div><br>
     <!-- Uptime boxes
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
@@ -81,7 +105,14 @@ require_once('settings.php');
                 echo 'Connection failed with error: '.$error->getMessage();
             }
 
-            $stmt = $dbh->query('SELECT * FROM targets');
+            if (!empty($_GET['category'])){
+                $stmt = $dbh->prepare(
+                    'SELECT * FROM targets WHERE category = :category'
+                );
+                $stmt->execute(['category' => urldecode($_GET['category'])]);
+            }else{
+                $stmt = $dbh->query('SELECT * FROM targets');
+            }
             $targets = $stmt->fetchAll();
             foreach ($targets as $target) {
                 echo '<div class="col-lg-4" style="border: 1px solid #80808024;padding-top: 10px;">
