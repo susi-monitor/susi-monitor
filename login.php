@@ -84,7 +84,7 @@ if (!empty($_GET['action']) && $_GET['action']==='validate'){
     <!-- FOOTER -->
     <footer class="container">
         <p class="float-right"><a href="index.php#">Back to top</a></p>
-        <p><small><a href="https://github.com/greg-olszewski/susi-monitor">SuSi Monitor
+        <p><small><a href="https://github.com/greg-olszewski/susi-monitor" target="_blank">SuSi Monitor
                     v<?php echo RELEASE_VERSION; ?> </a>&nbsp; All times are in <?php echo date('T') ?> .</small></p>
     </footer>
 </main>
