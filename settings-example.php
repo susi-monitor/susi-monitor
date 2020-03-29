@@ -11,7 +11,7 @@ define('PAGE_TITLE', 'SuSi Monitor');
 
 define('ADMIN_PASSWORD', 'admin');
 
-define('RELEASE_VERSION', '0.4.0');
+define('RELEASE_VERSION', '0.3.1');
 //custom User Agent string
 define('UA_STRING', 'SuSi Monitor v'.RELEASE_VERSION);
 
