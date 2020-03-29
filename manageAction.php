@@ -46,11 +46,16 @@ switch ($_GET['action']) {
             );
             $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+            if (strlen($_POST['inputCategory']) < 1) {
+                $category = null;
+            } else {
+                $category = $_POST['inputCategory'];
+            }
             $data = [
                 'name' => $_POST['inputName'],
                 'url' => $_POST['inputURL'],
                 'type' => $_POST['inputType'],
-                'category' => $_POST['inputCategory']
+                'category' => $category
             ];
             $sql = 'INSERT INTO targets (name, url, type, category) VALUES (:name, :url, :type, :category)';
             $stmt= $dbh->prepare($sql);
@@ -73,12 +78,18 @@ switch ($_GET['action']) {
             );
             $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+            if (strlen($_POST['inputCategory']) < 1) {
+                $category = null;
+            } else {
+                $category = $_POST['inputCategory'];
+            }
+
             $data = [
                 'id' => $_GET['id'],
                 'name' => $_POST['inputName'],
                 'url' => $_POST['inputURL'],
                 'type' => $_POST['inputType'],
-                'category' => $_POST['inputCategory']
+                'category' => $category
             ];
             $sql = 'UPDATE targets SET name=:name, url=:url, type=:type, category=:category WHERE id=:id';
             $stmt= $dbh->prepare($sql);
