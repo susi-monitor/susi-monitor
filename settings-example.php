@@ -9,6 +9,8 @@ define('DB_NAME', 'susi');
 // Customized title
 define('PAGE_TITLE', 'SuSi Monitor');
 
+define('ADMIN_PASSWORD', 'admin');
+
 define('RELEASE_VERSION', '0.2.0');
 //custom User Agent string
 define('UA_STRING', 'SuSi Monitor v'.RELEASE_VERSION);

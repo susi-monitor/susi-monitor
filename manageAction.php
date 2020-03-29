@@ -2,6 +2,11 @@
 
 require_once('settings.php');
 
+session_start();
+if(empty($_SESSION["authenticated"]) || $_SESSION["authenticated"] != 'true') {
+    header('Location: login.php');
+}
+
 $action = $_GET['action'];
 $targetId = $_GET['id'];
 
