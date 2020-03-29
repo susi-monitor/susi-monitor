@@ -73,6 +73,7 @@ require_once('settings.php');
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">URL</th>
+                    <th scope="col">type</th>
                     <th scope="col">Category</th>
                     <th scope="col">Actions</th>
                 </tr>
@@ -103,6 +104,7 @@ require_once('settings.php');
 <th scope="row">'.$orderNumber.'</th>
       <td>'.$target['name'].'</td>
       <td>'.$target['url'].'</td>
+      <td>'.$target['type'].'</td>
       <td>'.$target['category'].'</td>
       <td><a href="manage.php?action=edit&id='.$target['id'].'" alt="Edit entry">📝</a><br>
       <a href="manage.php?action=delete&id='.$target['id'].'" alt="Delete entry">🗑️</a></td>
