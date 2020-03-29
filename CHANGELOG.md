@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Basic admin panel with list/add/edit/remove targets
 - Possibility to mark targets with category
+- Add filter by category feature
 
 ### Changed
 
