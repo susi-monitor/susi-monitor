@@ -15,6 +15,9 @@ For the moment it supports 2 types of checks:
 2. Execute *setup.sql* on your DB to create tables and sample target.
 3. Setup your cron to execute updateData.php every n minutes.
 
+## Administration
+Admin panel link in footer. Default passsword is **admin**
+
 ## Contributing
 Only requirement is to keep PSR-12.
 

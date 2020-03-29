@@ -76,6 +76,7 @@ if (!empty($_GET['action']) && $_GET['action']==='validate'){
                     <label for="inputName">Password</label>
                     <input type="password" class="form-control" id="password" name="password" required>
                 </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
         </div><!-- /.row -->
 
     </div><!-- /.container -->

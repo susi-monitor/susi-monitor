@@ -75,7 +75,9 @@ require_once ('templates/header.php');
                             <small id="categoryHelp" class="form-text text-muted">Match one of existing categories or add a new one.</small>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>';
+                        <button type="button" class="btn btn-secondary" onclick="location.href = \'admin.php\';">Back</button>
+                    </form>
+                    ';
 
                     break;
                 case 'delete':
@@ -112,8 +114,11 @@ require_once ('templates/header.php');
                             <small id="categoryHelp" class="form-text text-muted">Match one of existing categories or add a new one.</small>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-secondary" onclick="location.href = 'admin.php';">Back</button>
                     </form>
+                    ';
             <?php
+                    break;
                 default:
                     break;
             }

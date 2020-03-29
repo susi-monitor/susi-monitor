@@ -71,6 +71,9 @@ require_once ('templates/header.php');
                 <h2>'.$target['name'].'</h2>
                 <hr>
             <p>
+            
+            <button type="button" class="btn btn-secondary" onclick="location.href = \'detailedGraph.php?id='.$target['id'].'\';">🔍&nbsp;Last 24 hrs</button>
+              </p>
               <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#urlModal'
                     .$target['id'].'"">🌎&nbsp;URL</button>
               </p>
