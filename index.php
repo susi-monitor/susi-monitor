@@ -123,7 +123,7 @@ require_once('settings.php');
                 $lastRow = $stmt->fetch();
 
                 // last status check
-                if ($lastRow['status'] == 1) {
+                if ($lastRow !== false && $lastRow['status'] == 1) {
                     echo '<a class="btn btn-success"
                       role="button" disabled>🖥️&nbsp;STATUS:&nbsp;UP</a>';
                 } else {
