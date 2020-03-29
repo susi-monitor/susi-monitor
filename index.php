@@ -184,7 +184,7 @@ require_once('settings.php');
     <footer class="container">
         <p class="float-right"><a href="index.php#">Back to top</a></p>
         <p><small><a href="https://github.com/greg-olszewski/susi-monitor" target="_blank">SuSi Monitor
-                    v<?php echo RELEASE_VERSION; ?> </a>&nbsp; All times are in <?php echo date('T') ?> .</small></p>
+                    v<?php echo RELEASE_VERSION; ?> </a>&nbsp;|&nbsp; All times are in <?php echo date('T') ?>.&nbsp; | &nbsp;<a href="admin.php">Administration</a></small></p>
     </footer>
 </main>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
