@@ -123,7 +123,7 @@ require_once ('templates/header.php');
     </div><!-- /.container -->
 
     <?php
-    require_once ('templates/header.php');
+    require_once ('templates/footer.php');
     ?>
 
 </body>
