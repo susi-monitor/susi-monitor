@@ -18,6 +18,53 @@
     }
 </script>
 <!-- graph data here if property with data provided -->
+<?php
+if (!empty($target_data)) {
+    foreach ($target_data as $key => $data) {
+        $labels = '';
+        $values = '';
+        foreach ($data as $check) {
+            $formattedDate = date('d/m/y H:i', $check['datetime']);
+            $labels .= ",'".$formattedDate."'";
+            $values .= ','.$check['status'];
+        }
+        $valuesWithLabels = str_replace(
+            '1',
+            '"UP"',
+            str_replace('0', '"DOWN"', $values)
+        );
+        echo "<script>var ctx = document.getElementById('uptimechart-target".$key."').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'line',
 
+        data: {
+            labels: [".$labels."],
+            datasets: [{
+                label: 'status',
+                backgroundColor: 'rgb(34,146,255)',
+                borderColor: 'rgb(34,146,255)',
+                data: [".$valuesWithLabels."]
+            }]
+        },
+
+        // Configuration options go here
+        options: {
+            legend: {
+                display: false
+            },
+            scales: {
+            yAxes: [{
+                type: 'category',
+                labels: ['UP', 'DOWN'],
+                 ticks: {
+                    min: 'UP'
+                }
+            }]
+        }
+        }
+    });</script>";
+    }
+}
+?>
 </body>
 </html>
