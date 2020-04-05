@@ -1,17 +1,3 @@
-<?php
-
-require_once('settings.php');
-
-if (!empty($_GET['action']) && $_GET['action']==='validate'){
-    if($_POST['password']===ADMIN_PASSWORD){
-        session_start();
-        $_SESSION['authenticated'] = 'true';
-        header('Location: admin.php');
-    }
-}
-
-?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,7 +6,7 @@ if (!empty($_GET['action']) && $_GET['action']==='validate'){
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="SuSi Monitor">
     <meta name="author" content="Grzegorz Olszewski <grzegorz@olszewski.in>">
-    <title><?= PAGE_TITLE ?></title>
+    <title><?php echo $title; ?></title>
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           rel="stylesheet">
@@ -45,6 +31,17 @@ if (!empty($_GET['action']) && $_GET['action']==='validate'){
     </style>
     <!-- Custom styles -->
     <link href="susi.css" rel="stylesheet">
+    <!--Favicons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="img/site.webmanifest">
+    <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="msapplication-config" content="img/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
 </head>
 <body>
 <header>
@@ -64,36 +61,3 @@ if (!empty($_GET['action']) && $_GET['action']==='validate'){
         </div>
     </nav>
 </header>
-
-<main role="main">
-    <div style="min-height: 100px;"></div>
-
-    <div class="container">
-
-        <div class="row">
-            <form method="post" action="login.php?action=validate">
-                <div class="form-group">
-                    <label for="inputName">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-        </div><!-- /.row -->
-
-    </div><!-- /.container -->
-
-
-    <!-- FOOTER -->
-    <footer class="container">
-        <p class="float-right"><a href="index.php#">Back to top</a></p>
-        <p><small><a href="https://github.com/greg-olszewski/susi-monitor" target="_blank">SuSi Monitor
-                    v<?php echo RELEASE_VERSION; ?> </a>&nbsp; All times are in <?php echo date('T') ?> .</small></p>
-    </footer>
-</main>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-<script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>
-
