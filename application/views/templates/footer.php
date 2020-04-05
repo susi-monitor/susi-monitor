@@ -17,3 +17,7 @@
         window.scrollTo(0, 0);
     }
 </script>
+<!-- graph data here if property with data provided -->
+
+</body>
+</html>
