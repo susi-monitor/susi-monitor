@@ -22,7 +22,7 @@
 if (!empty($target_data)) {
     foreach ($target_data as $key => $data) {
         $dataReversed = array_reverse($data);
-        print_r($dataReversed);
+
         $labels = '';
         $values = '';
         foreach ($dataReversed as $check) {
