@@ -14,18 +14,18 @@
     </p>
         <p>
             <?php
-            $reversedTargetData=array_reverse($target_data[$target['id']]);
+            $reversedTargetData = array_reverse($target_data[$target['id']]);
             $lastRow = array_pop($reversedTargetData);
 
-        // last status check
-        if ($lastRow !== false && $lastRow['status'] == 1) {
-        echo '<a class="btn btn-success"
+            // last status check
+            if ($lastRow !== false && $lastRow['status'] == 1) {
+                echo '<a class="btn btn-success"
                  role="button" disabled>🖥️&nbsp;STATUS:&nbsp;UP</a>';
-        } else {
-        echo '<a class="btn btn-failure"
+            } else {
+                echo '<a class="btn btn-failure"
                  role="button" disabled>🖥️&nbsp;STATUS:&nbsp;DOWN</a>';
-        }
-        ?>
+            }
+            ?>
         </p>
 
     <!-- URL modal -->
