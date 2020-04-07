@@ -4,6 +4,10 @@ defined('RELEASE_VERSION')  OR define('RELEASE_VERSION', '0.4.0');
 // Custom User Agent string
 defined('UA_STRING')  OR define('UA_STRING', 'SuSi Monitor v'.RELEASE_VERSION);
 
+// MITM protection - disabled by default - set "2" to enforce checks
+defined('VERIFYHOST')  OR define('VERIFYHOST', 0);
+defined('VERIFYPEER')  OR define('VERIFYPEER', 0);
+
 // Proxy settings
 defined('PROXY_ENABLED')  OR define('PROXY_ENABLED', 0);
 defined('PROXY_HOST')  OR define('PROXY_HOST', 'exampleproxy.local');

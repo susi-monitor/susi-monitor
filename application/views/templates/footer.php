@@ -21,9 +21,11 @@
 <?php
 if (!empty($target_data)) {
     foreach ($target_data as $key => $data) {
+        $dataReversed = array_reverse($data);
+        print_r($dataReversed);
         $labels = '';
         $values = '';
-        foreach ($data as $check) {
+        foreach ($dataReversed as $check) {
             $formattedDate = date('d/m/y H:i', $check['datetime']);
             $labels .= ",'".$formattedDate."'";
             $values .= ','.$check['status'];
@@ -33,7 +35,7 @@ if (!empty($target_data)) {
             '"UP"',
             str_replace('0', '"DOWN"', $values)
         );
-        echo "<script>var ctx = document.getElementById('uptimechart-target".$key."').getContext('2d');
+        echo "<script>var ctx = document.getElementById('uptimechart-target".$check['target_id']."').getContext('2d');
     var chart = new Chart(ctx, {
         type: 'line',
 
