@@ -9,7 +9,7 @@
             <?php
             echo 'Are you sure you want to delete&nbsp; 
 <b>'.$target['name'].'</b>?&nbsp;&nbsp;
-<a href="'.site_url('/admin/removeAction/').$target['id'].'">
+<a href="'.site_url('/admin/deleteAction/').$target['id'].'">
     <button>Yes</button>
 </a>&nbsp;
 <a href="'.site_url('/admin/').'">

@@ -74,4 +74,9 @@ class Target_model extends CI_Model {
 
         return $this->db->insert('targets', $data);
     }
+
+    public function delete($targetId = null)
+    {
+        return $this->db->delete('targets', array('id' => $targetId));
+    }
 }

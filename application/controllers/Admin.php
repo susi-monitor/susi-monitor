@@ -99,7 +99,18 @@ class Admin extends CI_Controller
         //TODO
     }
 
-    public function delete_action(){
-        //TODO
+    public function delete_action($targetId = NULL){
+        $this->target_model->delete($targetId);
+        $data['successMessage'] = 'Successfully deleted monitoring target';
+
+        $data['targets'] = $this->target_model->get_targets();
+        $data['title'] = PAGE_TITLE.' - Administration';
+        $data['target_data'] = $this->data_model->get_data();
+        $data['categories'] = $this->target_model->get_categories();
+        $data['removeFooterLinks'] = true;
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/index', $data);
+        $this->load->view('templates/footer');
     }
 }
