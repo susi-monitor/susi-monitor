@@ -13,7 +13,7 @@ class Target extends CI_Controller {
     {
         $data['targets'] = $this->target_model->get_targets();
 
-        $data['title'] = 'SuSi Monitor';
+        $data['title'] = PAGE_TITLE;
 
         $data['target_data'] = $this->data_model->get_data();
 
@@ -33,7 +33,7 @@ class Target extends CI_Controller {
             show_404();
         }
 
-        $data['title'] = 'SuSi Monitor - '.$category;
+        $data['title'] = PAGE_TITLE.' - '.$category;
 
         $data['target_data'] = $this->data_model->get_data();
 
@@ -50,7 +50,7 @@ class Target extends CI_Controller {
 
         $data['target_data'][$data['target']['id']] = $this->target_model->get_24hrs_for_target($targetId);
 
-        $data['title'] = 'SuSi Monitor - last 24 hours of '.$data['target']['name'];
+        $data['title'] = PAGE_TITLE.' - last 24 hours of '.$data['target']['name'];
 
         $this->load->view('templates/header', $data);
         $this->load->view('target/details', $data);

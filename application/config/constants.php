@@ -8,6 +8,9 @@ defined('UA_STRING')  OR define('UA_STRING', 'SuSi Monitor v'.RELEASE_VERSION);
 defined('VERIFYHOST')  OR define('VERIFYHOST', 0);
 defined('VERIFYPEER')  OR define('VERIFYPEER', 0);
 
+// Customized title
+define('PAGE_TITLE', 'SuSi Monitor');
+
 // Proxy settings
 defined('PROXY_ENABLED')  OR define('PROXY_ENABLED', 0);
 defined('PROXY_HOST')  OR define('PROXY_HOST', 'exampleproxy.local');
