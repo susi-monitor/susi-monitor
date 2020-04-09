@@ -17,7 +17,7 @@ For the moment it supports 2 types of checks:
 4. (optional) Customizations (like custom title, User-Agent or proxy data) in `config/constants.php`
 
 ## Administration
-Admin panel link in footer. Default passsword is **admin**
+Admin panel link in footer. Default password is **admin**
 
 ## Contributing
 Only requirement is to keep PSR-12.
