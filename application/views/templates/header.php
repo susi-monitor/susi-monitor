@@ -1,3 +1,12 @@
+<?php
+if (isset($verifyLogin) && !empty($verifyLogin) && $verifyLogin === true){
+    session_start();
+    if(empty($_SESSION["authenticated"]) || $_SESSION["authenticated"] != 'true') {
+        header('Location: '.site_url('/admin/login'));
+    }
+
+}
+?>
 <!doctype html>
 <html lang="en">
 <head>

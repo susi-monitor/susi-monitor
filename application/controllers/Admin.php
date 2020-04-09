@@ -17,6 +17,7 @@ class Admin extends CI_Controller
         $data['title'] = PAGE_TITLE.' - Administration';
         $data['target_data'] = $this->data_model->get_data();
         $data['categories'] = $this->target_model->get_categories();
+        $data['verifyLogin'] = true;
         $data['removeFooterLinks'] = true;
 
         $this->load->view('templates/header', $data);
@@ -26,9 +27,13 @@ class Admin extends CI_Controller
 
     public function add()
     {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
         $data['title'] = PAGE_TITLE.' - Administration';
         $data['categories'] = $this->target_model->get_categories();
         $data['removeFooterLinks'] = true;
+        $data['verifyLogin'] = true;
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/add', $data);
@@ -47,6 +52,7 @@ class Admin extends CI_Controller
         $data['target_data'] = $this->data_model->get_data();
         $data['categories'] = $this->target_model->get_categories();
         $data['removeFooterLinks'] = true;
+        $data['verifyLogin'] = true;
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/edit', $data);
@@ -59,6 +65,7 @@ class Admin extends CI_Controller
         $data['title'] = PAGE_TITLE.' - Administration';
         $data['target_data'] = $this->data_model->get_data();
         $data['removeFooterLinks'] = true;
+        $data['verifyLogin'] = true;
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/delete', $data);
@@ -71,6 +78,7 @@ class Admin extends CI_Controller
         $this->load->library('form_validation');
 
         $data['title'] = PAGE_TITLE.' - Add monitoring target';
+        $data['verifyLogin'] = true;
 
         $this->form_validation->set_rules('inputName', 'Name', 'required');
         $this->form_validation->set_rules('inputURL', 'URL', 'required');
@@ -105,6 +113,7 @@ class Admin extends CI_Controller
         $this->load->library('form_validation');
 
         $data['title'] = PAGE_TITLE.' - Edit monitoring target';
+        $data['verifyLogin'] = true;
         $data['targetId'] = $this->input->post('inputId');
         $data['target'] = array(
             'name' => $this->input->post('inputName'),
@@ -150,6 +159,7 @@ class Admin extends CI_Controller
 
         $data['targets'] = $this->target_model->get_targets();
         $data['title'] = PAGE_TITLE.' - Administration';
+        $data['verifyLogin'] = true;
         $data['target_data'] = $this->data_model->get_data();
         $data['categories'] = $this->target_model->get_categories();
         $data['removeFooterLinks'] = true;
@@ -182,6 +192,8 @@ class Admin extends CI_Controller
         $data['removeFooterLinks'] = true;
 
         if ($this->input->post('password') === ADMIN_PASSWORD){
+            session_start();
+            $_SESSION['authenticated'] = 'true';
             redirect('/admin', 'refresh');
         } else {
             $data['message'] = 'Incorrect password';
