@@ -5,6 +5,11 @@
 
         <div class="row">
             <h1>Monitored Services</h1>
+            <?php
+            if (isset($successMessage) && !empty($successMessage)) {
+                echo '<br><b>✔️&nbsp;'.$successMessage.'</b><br>';
+            }
+            ?>
             <table class="table table-hover">
                 <thead>
                 <tr>
