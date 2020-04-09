@@ -61,4 +61,17 @@ class Target_model extends CI_Model {
 
         return null;
     }
+
+    public function add()
+    {
+
+        $data = array(
+            'name' => $this->input->post('inputName'),
+            'url' => $this->input->post('inputURL'),
+            'type' => $this->input->post('inputType'),
+            'category' => $this->input->post('inputCategory')
+        );
+
+        return $this->db->insert('targets', $data);
+    }
 }

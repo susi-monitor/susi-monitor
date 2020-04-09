@@ -4,16 +4,19 @@
     <div class="container">
 
         <div class="row">
-            <?php echo validation_errors(); ?>
 
             <?php echo form_open('admin/addAction'); ?>
 
             <div class="form-group">
+                <div>
+                    <?php echo validation_errors('<br><b>⚠️&nbsp;', '</b>'); ?>
+                </div>
+                <br>
                     <label for="inputName">Name</label>
                     <input type="text" class="form-control" id="inputName"
                            name="inputName" aria-describedby="nameHelp"
                            maxlength="128" required>
-                    <small id="emailHelp" class="form-text text-muted">Just a
+                    <small id="nameHelp" class="form-text text-muted">Just a
                         user-friendly name so that user knows what service is
                         checked.</small>
                 </div>
