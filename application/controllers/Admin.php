@@ -12,7 +12,7 @@ class Admin extends CI_Controller {
     public function index()
     {
         $data['targets'] = $this->target_model->get_targets();
-        $data['title'] = 'SuSi Monitor - Administration';
+        $data['title'] = PAGE_TITLE.' - Administration';
         $data['target_data'] = $this->data_model->get_data();
         $data['categories'] = $this->target_model->get_categories();
         $data['removeFooterLinks'] = true;
