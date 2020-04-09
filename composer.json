@@ -1,0 +1,22 @@
+{
+  "description": "SuSi - Super Simple uptime monitor",
+  "authors": [
+    {
+      "name": "Grzegorz Olszewski",
+      "email": "grzegorz@olszewski.in",
+      "homepage": "http://olszewski.in",
+      "role": "Developer"
+    }
+  ],
+  "license": "Apache License 2.0",
+  "require": {
+    "php": ">=5.4",
+    "codeigniter/framework": "3.1.*",
+    "ext-curl": "*",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-master",
+    "mikey179/vfsStream": "1.1.*"
+  }
+}

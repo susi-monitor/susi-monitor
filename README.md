@@ -11,15 +11,16 @@ For the moment it supports 2 types of checks:
 - default - checks if the url is alive and is presenting ANY response
 
 ## Installation
-1. Rename *settings-example.php* to *settings.php* and fill in your DB details.
-2. Execute *setup.sql* on your DB to create tables and sample target.
-3. Setup your cron to execute updateData.php every n minutes.
+1. Rename `application/config/database-example.php` to `application/config/database.php` and fill in your DB details.
+2. Execute `setup.sql` on your DB to create tables and sample target.
+3. Setup your cron to call `https://YOUR_URL/data/update` every n minutes.
+4. (optional) Customizations (like custom title, User-Agent or proxy data) in `config/constants.php`
 
 ## Administration
-Admin panel link in footer. Default passsword is **admin**
+Admin panel link in footer. Default password is **admin**
 
 ## Contributing
 Only requirement is to keep PSR-12.
 
 ---
-Notes on used libraries etc. - see *LEGAL.md* file.
+Notes on used libraries etc. - see `LEGAL.md` file.
