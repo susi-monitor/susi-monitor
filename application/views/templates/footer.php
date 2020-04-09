@@ -4,9 +4,13 @@
     if (isset($targets) && !is_null($targets) && count(array_keys($targets)) > 3) {
         echo ' <p class="float-right"><button type="button" class="btn btn-secondary" onclick="scrollToTop()">Back to top</button></p>';
     }
-    ?>
-    <p><small><a href="https://github.com/greg-olszewski/susi-monitor" target="_blank">SuSi Monitor
-                v<?php echo RELEASE_VERSION; ?> </a>&nbsp;|&nbsp; All times are in <?php echo date('T') ?>.&nbsp; | &nbsp;<a href="<?php echo site_url('admin/'); ?>">Administration</a></small></p>
+
+    if (!isset($removeFooterLinks) || is_null($removeFooterLinks) && $removeFooterLinks === false){
+        echo '<p><small><a href="https://github.com/greg-olszewski/susi-monitor" target="_blank">SuSi Monitor
+                v'.RELEASE_VERSION.' </a>&nbsp;|&nbsp; All times are in '.date('T').'.&nbsp; | &nbsp;<a href="'.site_url('admin/').'">Administration</a></small></p>';
+    }
+        ?>
+
 </footer>
 </main>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
