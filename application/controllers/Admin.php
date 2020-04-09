@@ -158,4 +158,16 @@ class Admin extends CI_Controller
         $this->load->view('admin/index', $data);
         $this->load->view('templates/footer');
     }
+
+    public function login()
+    {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $data['removeFooterLinks'] = true;
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/login', $data);
+        $this->load->view('templates/footer');
+    }
 }
