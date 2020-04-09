@@ -7,7 +7,7 @@
             <h1>Monitored Services</h1>
             <?php
             if (isset($successMessage) && !empty($successMessage)) {
-                echo '<br><b>✔️&nbsp;'.$successMessage.'</b><br>';
+                echo '<div style="padding-top: 50px; padding-bottom: 30px;"><br><b>✔️&nbsp;'.$successMessage.'</b><br></div>';
             }
             ?>
             <table class="table table-hover">
