@@ -23,4 +23,4 @@ Admin panel link in footer. Default password is **admin**
 Only requirement is to keep PSR-12.
 
 ---
-Notes on used libraries etc. - see *LEGAL.md* file.
+Notes on used libraries etc. - see `LEGAL.md` file.
