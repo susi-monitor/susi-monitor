@@ -8,6 +8,9 @@ defined('UA_STRING')  OR define('UA_STRING', 'SuSi Monitor v'.RELEASE_VERSION);
 defined('VERIFYHOST')  OR define('VERIFYHOST', 0);
 defined('VERIFYPEER')  OR define('VERIFYPEER', 0);
 
+//Administration panel access password
+defined('ADMIN_PASSWORD')  OR define('ADMIN_PASSWORD', 'admin');
+
 // Customized title
 define('PAGE_TITLE', 'SuSi Monitor');
 

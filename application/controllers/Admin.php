@@ -164,10 +164,31 @@ class Admin extends CI_Controller
         $this->load->helper('form');
         $this->load->library('form_validation');
 
+        $data['title'] = PAGE_TITLE.' - Administration';
         $data['removeFooterLinks'] = true;
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/login', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function login_action()
+    {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->load->helper('url');
+
+        $data['title'] = PAGE_TITLE.' - Administration';
+        $data['removeFooterLinks'] = true;
+
+        if ($this->input->post('password') === ADMIN_PASSWORD){
+            redirect('/admin', 'refresh');
+        } else {
+            $data['message'] = 'Incorrect password';
+            $this->load->view('templates/header', $data);
+            $this->load->view('admin/login', $data);
+            $this->load->view('templates/footer');
+        }
+
     }
 }
