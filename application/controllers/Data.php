@@ -117,9 +117,6 @@ class Data extends CI_Controller
 
     protected function insertData($targetId, $status)
     {
-        /* $sql = 'INSERT INTO data (target_id, status, datetime) VALUES (?,?,?)';
-         $stmt = $dbh->prepare($sql);
-         $stmt->execute([$targetId, $status, date('U')]);*/
         return $this->data_model->insert_check_data(
             $targetId,
             $status,
