@@ -2,9 +2,12 @@
     <div style="min-height: 100px;"></div>
 
     <div class="container">
-<?php
-                   echo '<form method="post" action="'.site_url('/admin/editAction/').$target['id'].'">
-                        <div class="form-group">
+        <?php echo validation_errors(); ?>
+
+        <?php echo form_open('news/create'); ?>
+
+        <?php
+                   echo '<div class="form-group">
                             <label for="inputName">Name</label>
                             <input type="text" class="form-control" id="inputName" value="'.$target['name'].'" name="inputName" aria-describedby="nameHelp" maxlength="128" required>
                             <small id="emailHelp" class="form-text text-muted">Just a user-friendly name so that user knows what service is checked.</small>

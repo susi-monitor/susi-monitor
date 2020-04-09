@@ -4,8 +4,11 @@
     <div class="container">
 
         <div class="row">
-            <form method="post" action="<?php echo site_url('/admin/addAction/'); ?>">
-                <div class="form-group">
+            <?php echo validation_errors(); ?>
+
+            <?php echo form_open('admin/addAction'); ?>
+
+            <div class="form-group">
                     <label for="inputName">Name</label>
                     <input type="text" class="form-control" id="inputName"
                            name="inputName" aria-describedby="nameHelp"
