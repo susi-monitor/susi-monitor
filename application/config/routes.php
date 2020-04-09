@@ -54,6 +54,7 @@ $route['details/(:any)'] = 'target/details/$1';
 $route['data/update'] = 'data/update_data';
 $route['admin/'] = 'admin';
 $route['admin/edit/(:any)'] = 'admin/update/$1';
+$route['admin/delete/(:any)'] = 'admin/delete/$1';
 $route['admin/add'] = 'admin/add';
 $route['category/(:any)'] = 'target/view_category/$1';
 $route['default_controller'] = 'target';

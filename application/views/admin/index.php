@@ -29,8 +29,8 @@
       <td>'.$target['url'].'</td>
       <td>'.$target['type'].'</td>
       <td>'.$target['category'].'</td>
-      <td><a href="manage.php?action=edit&id='.$target['id'].'" alt="Edit entry">📝</a><br>
-      <a href="manage.php?action=delete&id='.$target['id'].'" alt="Delete entry">🗑️</a></td>
+      <td><a href="'.site_url('/admin/edit/').$target['id'].'" alt="Edit entry">📝</a><br>
+      <a href="'.site_url('/admin/delete/').$target['id'].'" alt="Delete entry">🗑️</a></td>
       ';
 
 
@@ -42,7 +42,7 @@
                 </tbody>
             </table>
             <br>
-            <a href="manage.php?action=add">
+            <a href="<?php echo site_url('/admin/add/'); ?>">
                 <button type="button" class="btn btn-primary">➕ Add new</button>
             </a>
         </div><!-- /.row -->
