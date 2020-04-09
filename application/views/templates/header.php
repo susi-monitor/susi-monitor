@@ -44,9 +44,9 @@
 
 </head>
 <body>
-<header>
+<header style="min-height: 20px !important;">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="index.php#"></a>
+        <a class="navbar-brand" href="<?php echo site_url(''); ?>"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarCollapse" aria-controls="navbarCollapse"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +55,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.php#">Uptime status</a>
+                    <a class="nav-link" href="<?php echo site_url(''); ?>">Uptime status</a>
                 </li>
             </ul>
         </div>

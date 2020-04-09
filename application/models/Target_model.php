@@ -22,6 +22,7 @@ class Target_model extends CI_Model {
     {
         $this->db->select('category');
         $this->db->distinct();
+        $this->db->where('category IS NOT NULL');
         $query = $this->db->get('targets');
 
         return $query->result_array();
@@ -32,6 +33,29 @@ class Target_model extends CI_Model {
         if ($targetId !== NULL)
         {
             $query = $this->db->get_where('data', array('target_id' => $targetId));
+            return $query->result_array();
+        }
+
+        return null;
+    }
+
+    public function get_target_by_id($targetId = NULL)
+    {
+        if ($targetId !== NULL)
+        {
+            $query = $this->db->get_where('targets', array('id' => $targetId));
+            return $query->result_array();
+        }
+
+        return null;
+    }
+
+    public function get_24hrs_for_target($targetId = NULL)
+    {
+        if ($targetId !== NULL)
+        {
+            $dateLimitInThePast = date('U', strtotime('-24 hours'));
+            $query = $this->db->order_by('datetime', 'DESC')->get_where('data', array('target_id' => $targetId, 'datetime >' => $dateLimitInThePast));
             return $query->result_array();
         }
 
