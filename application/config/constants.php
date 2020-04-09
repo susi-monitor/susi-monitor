@@ -1,5 +1,5 @@
 <?php
-defined('RELEASE_VERSION')  OR define('RELEASE_VERSION', '1.0.0');
+defined('RELEASE_VERSION')  OR define('RELEASE_VERSION', '1.1.0');
 
 // Custom User Agent string
 defined('UA_STRING')  OR define('UA_STRING', 'SuSi Monitor v'.RELEASE_VERSION);
