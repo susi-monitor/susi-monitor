@@ -6,9 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-
+- Codeigniter 3 framework
 ### Changed
-
+- Complete rewrite on new framework
+- Now only checks from last hour are shown instead of last n checks on main page
 ### Removed
 
 ## [0.3.1] - 2020-03-29
