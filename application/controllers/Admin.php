@@ -37,6 +37,11 @@ class Admin extends CI_Controller
 
     public function edit($targetId = NULL)
     {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $data['targetId'] = $targetId;
+
         $data['target'] = $this->target_model->get_target_by_id($targetId)[0];
         $data['title'] = PAGE_TITLE.' - Administration';
         $data['target_data'] = $this->data_model->get_data();
@@ -96,7 +101,47 @@ class Admin extends CI_Controller
     }
 
     public function edit_action(){
-        //TODO
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $data['title'] = PAGE_TITLE.' - Edit monitoring target';
+        $data['targetId'] = $this->input->post('inputId');
+        $data['target'] = array(
+            'name' => $this->input->post('inputName'),
+            'url' => $this->input->post('inputURL'),
+            'type' => $this->input->post('inputType'),
+            'category' => $this->input->post(
+                'inputCategory'
+            ),
+        );
+
+        $this->form_validation->set_rules('inputName', 'Name', 'required');
+        $this->form_validation->set_rules('inputURL', 'URL', 'required');
+        $this->form_validation->set_rules('inputType', 'Type', 'required');
+        $this->form_validation->set_rules('inputId', 'ID', 'required');
+
+        if ($this->form_validation->run() === FALSE)
+        {
+            $this->load->view('templates/header', $data);
+            $this->load->view('admin/edit', $data);
+            $this->load->view('templates/footer');
+
+        }
+        else
+        {
+            $this->target_model->edit();
+            $data['successMessage'] = 'Successfully edited monitoring configuration';
+
+            $data['targets'] = $this->target_model->get_targets();
+            $data['title'] = PAGE_TITLE.' - Administration';
+            $data['target_data'] = $this->data_model->get_data();
+            $data['categories'] = $this->target_model->get_categories();
+            $data['removeFooterLinks'] = true;
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('admin/index', $data);
+            $this->load->view('templates/footer');
+        }
     }
 
     public function delete_action($targetId = NULL){

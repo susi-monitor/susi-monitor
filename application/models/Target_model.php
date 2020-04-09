@@ -79,4 +79,16 @@ class Target_model extends CI_Model {
     {
         return $this->db->delete('targets', array('id' => $targetId));
     }
+
+    public function edit()
+    {
+        $this->db->set('name', $this->input->post('inputName'));
+        $this->db->set('url', $this->input->post('inputURL'));
+        $this->db->set('type', $this->input->post('inputType'));
+        $this->db->set('category', $this->input->post('inputCategory'));
+
+        $this->db->where('id', $this->input->post('inputId'));
+
+        return $this->db->update('targets');
+    }
 }

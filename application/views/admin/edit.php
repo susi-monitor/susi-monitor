@@ -2,15 +2,25 @@
     <div style="min-height: 100px;"></div>
 
     <div class="container">
-        <?php echo validation_errors(); ?>
 
-        <?php echo form_open('news/create'); ?>
+        <?php echo form_open('admin/editAction/'); ?>
 
         <?php
-                   echo '<div class="form-group">
-                            <label for="inputName">Name</label>
+        echo '<div class="form-group">';
+        ?>
+        <div>
+            <?php echo validation_errors('<br><b>⚠️&nbsp;', '</b>'); ?>
+        </div>
+        <?php
+        if (isset ($targetId) && !empty($targetId)){
+            echo '<input type="text" hidden name="inputId" value="'.$targetId.'">';
+        }else{
+            echo '<input type="text" hidden name="inputId" value="'.$target['id'].'">';
+        }
+
+                        echo '   <label for="inputName">Name</label>
                             <input type="text" class="form-control" id="inputName" value="'.$target['name'].'" name="inputName" aria-describedby="nameHelp" maxlength="128" required>
-                            <small id="emailHelp" class="form-text text-muted">Just a user-friendly name so that user knows what service is checked.</small>
+                            <small id="nameHelp" class="form-text text-muted">Just a user-friendly name so that user knows what service is checked.</small>
                         </div>
                         <div class="form-group">
                             <label for="inputURL">URL</label>
