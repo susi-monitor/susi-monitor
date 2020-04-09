@@ -85,7 +85,14 @@ class Target_model extends CI_Model {
         $this->db->set('name', $this->input->post('inputName'));
         $this->db->set('url', $this->input->post('inputURL'));
         $this->db->set('type', $this->input->post('inputType'));
-        $this->db->set('category', $this->input->post('inputCategory'));
+
+        if (strlen($this->input->post('inputCategory')) < 1) {
+            $category = null;
+        } else {
+            $category = $this->input->post('inputCategory');
+        }
+
+        $this->db->set('category', $category);
 
         $this->db->where('id', $this->input->post('inputId'));
 
