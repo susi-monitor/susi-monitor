@@ -39,16 +39,16 @@ if (isset($verifyLogin) && !empty($verifyLogin) && $verifyLogin === true){
         }
     </style>
     <!-- Custom styles -->
-    <link href="susi.css" rel="stylesheet">
+    <link href="<?php echo site_url('/'); ?>susi.css" rel="stylesheet">
     <!--Favicons-->
-    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-    <link rel="manifest" href="img/site.webmanifest">
-    <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo site_url('/'); ?>img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo site_url('/'); ?>img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo site_url('/'); ?>img/favicon-16x16.png">
+    <link rel="manifest" href="<?php echo site_url('/'); ?>img/site.webmanifest">
+    <link rel="mask-icon" href="<?php echo site_url('/'); ?>img/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="<?php echo site_url('/'); ?>img/favicon.ico">
     <meta name="msapplication-TileColor" content="#00a300">
-    <meta name="msapplication-config" content="img/browserconfig.xml">
+    <meta name="msapplication-config" content="<?php echo site_url('/'); ?>img/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
 </head>
