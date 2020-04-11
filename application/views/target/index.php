@@ -24,7 +24,7 @@
 
         <button type="button" class="btn btn-secondary" onclick="location.href = '<?php echo site_url('details/'.$target['id']); ?>';">🔍&nbsp;Last 24 hrs</button>
     </p>
-    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#urlModal<?php echo $target['id']; ?>"">🌎&nbsp;URL</button>
+    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#urlModal<?php echo $target['id']; ?>">🌎&nbsp;URL</button>
     </p>
         <p>
             <?php
