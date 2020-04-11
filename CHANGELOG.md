@@ -8,7 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
-
+- Fix redundant quotes in URL button
+- Change license identifier to SPDX compliant format
+- Fix missing path in header when the loaded page is other than main page
 ### Removed
 
 ## [1.0.0] - 2020-04-10
