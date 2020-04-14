@@ -55,6 +55,7 @@ class Data extends CI_Controller
         }
 
         $output = curl_exec($handle);
+        $responseTime =  curl_getinfo($handle, CURLINFO_STARTTRANSFER_TIME);
 
         if ($returnHTTPCode === true) {
             if (!curl_errno($handle)) {
@@ -79,34 +80,57 @@ class Data extends CI_Controller
                 return false;
             }
         }
+
         curl_close($handle);
 
-        return $output;
+        return array('output'=>$output, 'responseTime'=>$responseTime);
+    }
+
+    private function isItAssociativeTable($arr)
+    {
+        foreach (array_keys($arr) as $k => $v) {
+            if ($k !== $v) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     protected function checkTargets($listOfTargets)
     {
         foreach ($listOfTargets as $target) {
+            $responseTime = null;
             switch ($target['type']) {
                 case 'json':
                     //check if the URL serves proper JSON
                     $output = $this->callURL($target['url'], false, true);
+                    if (is_array($output) && isset($output['responseTime'])) {
+                        $responseTime = $output['responseTime'];
+                        $output = $output['output'];
+                    }
 
                     if (json_decode($output, true)
                         && json_last_error() === JSON_ERROR_NONE
                     ) {
-                        $this->insertData($target['id'], 1);
+                        $this->insertData($target['id'], 1, $responseTime);
                     } else {
-                        $this->insertData($target['id'], 0);
+                        $this->insertData($target['id'], 0, $responseTime);
                     }
                     break;
                 default:
                     //check if the URL is alive
                     $HTTPCode = $this->callURL($target['url'], true);
+
+                    if (is_array($HTTPCode) && isset($HTTPCode['responseTime']) && !is_int($HTTPCode)){
+                        $responseTime = $HTTPCode['responseTime'];
+                        $HTTPCode = $HTTPCode['output'];
+                    }
+
                     if (in_array($HTTPCode, ['200', '301', '302'], false)) {
-                        $this->insertData($target['id'], 1);
+                        $this->insertData($target['id'], 1, $responseTime);
                     } else {
-                        $this->insertData($target['id'], 0);
+                        $this->insertData($target['id'], 0, $responseTime);
                     }
                     break;
             }
@@ -115,12 +139,13 @@ class Data extends CI_Controller
         return true;
     }
 
-    protected function insertData($targetId, $status)
+    protected function insertData($targetId, $status, $responseTime)
     {
         return $this->data_model->insert_check_data(
             $targetId,
             $status,
-            date('U')
+            date('U'),
+            $responseTime
         );
     }
 
