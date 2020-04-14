@@ -1,4 +1,11 @@
 --
+-- IMPORTANT!
+-- This script is prepared with MySQL/MariaDB in mind.
+-- In case of other DBs you'll be probably better off recreating contents to suit your DB manually.
+--
+
+
+--
 -- Create table with targets for monitoring
 --
 
