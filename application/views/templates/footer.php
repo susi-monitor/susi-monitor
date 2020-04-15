@@ -27,7 +27,48 @@
 </script>
 <!-- graph data here if property with data provided -->
 <?php
-if (!empty($target_data)) {
+if (isset($showResponseTimes) && $showResponseTimes === true && !empty($target_data)) {
+    foreach ($target_data as $key => $data) {
+        $dataReversed = array_reverse($data);
+
+        $labels = '';
+        $values = '';
+        foreach ($dataReversed as $check) {
+            $formattedDate = date('d/m/y H:i', $check['datetime']);
+            $labels .= ",'".$formattedDate."'";
+            $values .= ','.$check['response_time'];
+        }
+        $lastValueItem = end($dataReversed);
+        if ($lastValueItem['status'] === '0'){
+            $backgroundColor = 'rgb(194,45,45)';
+            $borderColor = 'rgb(87,9,9)';
+        }else{
+            $backgroundColor = 'rgb(100,171,100)';
+            $borderColor = 'rgb(40,167,69)';
+        }
+        echo "<script>var ctx = document.getElementById('uptimechart-target".$check['target_id']."').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'line',
+
+        data: {
+            labels: [".$labels."],
+            datasets: [{
+                label: 'Response time [s]',
+                backgroundColor: '".$backgroundColor."',
+                borderColor: '".$borderColor."',
+                data: [".$values."]
+            }]
+        },
+
+        // Configuration options go here
+        options: {
+            legend: {
+                display: false
+            },
+        }
+    });</script>";
+    }
+} elseif (!empty($target_data)) {
     foreach ($target_data as $key => $data) {
         $dataReversed = array_reverse($data);
 

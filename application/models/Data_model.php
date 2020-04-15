@@ -22,7 +22,10 @@ class Data_model extends CI_Model
 
         $resultSorted = array();
 
-        foreach ($result as $res) {
+        foreach ($result as &$res) {
+            if($res['response_time'] === null){
+                $res['response_time'] = 0;
+            }
             $resultSorted[$res['target_id']][] = $res;
         }
 

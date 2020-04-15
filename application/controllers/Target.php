@@ -19,6 +19,10 @@ class Target extends CI_Controller {
 
         $data['categories'] = $this->target_model->get_categories();
 
+        if(isset($_GET['showResponseTimes']) && $_GET['showResponseTimes'] === 'true'){
+            $data['showResponseTimes'] = true;
+        }
+
         $this->load->view('templates/header', $data);
         $this->load->view('target/index', $data);
         $this->load->view('templates/footer');
