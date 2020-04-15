@@ -22,8 +22,5 @@ For the moment it supports 2 types of checks:
 ## Administration
 Admin panel link in footer. Default password is **admin**
 
-## Contributing
-Only requirement is to keep PSR-12.
-
 ---
 Notes on used libraries etc. - see `LEGAL.md` file.
