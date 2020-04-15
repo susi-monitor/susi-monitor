@@ -1,5 +1,5 @@
-[![License](https://img.shields.io/github/license/greg-olszewski/susi-monitor.svg)](https://github.com/greg-olszewski/susi-monitor)
 [![Latest release](https://img.shields.io/github/v/release/greg-olszewski/susi-monitor.svg?sort=semver)](https://github.com/greg-olszewski/susi-monitor/releases)
+[![License](https://img.shields.io/github/license/greg-olszewski/susi-monitor.svg)](https://github.com/greg-olszewski/susi-monitor)
 
 # susi-monitor
 **SU**per **SI**mple uptime monitor
