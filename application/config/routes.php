@@ -52,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['category/(:any)'] = 'target/view_category/$1';
 $route['details/(:any)'] = 'target/details/$1';
 $route['data/update'] = 'data/update_data';
+$route['data/purge'] = 'data/purgeOldData';
 $route['admin/'] = 'admin';
 $route['admin/edit/(:any)'] = 'admin/edit/$1';
 $route['admin/editAction'] = 'admin/edit_action';

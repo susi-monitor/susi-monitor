@@ -47,6 +47,14 @@ class Target extends CI_Controller {
 
         $data['categories'] = $this->target_model->get_categories();
 
+        if ((isset($_GET['showResponseTimes'])
+                && $_GET['showResponseTimes'] === 'true')
+            || (isset($_COOKIE['showResponseTimes'])
+                && $_COOKIE['showResponseTimes'] === 'yes')
+        ) {
+            $data['showResponseTimes'] = true;
+        }
+
         $this->load->view('templates/header', $data);
         $this->load->view('target/index', $data);
         $this->load->view('templates/footer', $data);
@@ -59,6 +67,14 @@ class Target extends CI_Controller {
         $data['target_data'][$data['target']['id']] = $this->target_model->get_24hrs_for_target($targetId);
 
         $data['title'] = PAGE_TITLE.' - last 24 hours of '.$data['target']['name'];
+
+        if ((isset($_GET['showResponseTimes'])
+                && $_GET['showResponseTimes'] === 'true')
+            || (isset($_COOKIE['showResponseTimes'])
+                && $_COOKIE['showResponseTimes'] === 'yes')
+        ) {
+            $data['showResponseTimes'] = true;
+        }
 
         $this->load->view('templates/header', $data);
         $this->load->view('target/details', $data);

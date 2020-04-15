@@ -149,5 +149,10 @@ class Data extends CI_Controller
         );
     }
 
+    public function purgeOldData()
+    {
+        return $this->data_model->purge_old_data();
+    }
+
 
 }

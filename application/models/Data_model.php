@@ -43,4 +43,12 @@ class Data_model extends CI_Model
 
         return $this->db->insert('data', $data);
     }
+
+    public function purge_old_data()
+    {
+        $datetime48hInThePast = date('U', strtotime('-48 hours'));
+        $this->db->where('datetime <', $datetime48hInThePast);
+
+        return $this->db->delete('data');
+    }
 }
