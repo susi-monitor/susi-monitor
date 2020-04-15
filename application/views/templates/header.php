@@ -71,14 +71,14 @@ if (isset($verifyLogin) && !empty($verifyLogin) && $verifyLogin === true){
         <style>
             .toggle.susi, .toggle-on.susi, .toggle-off.susi {
                 max-height: 1.5rem;
-                min-width: 9rem;
+                min-width: 3rem;
             }
         </style>
         <?php
         if (!isset($hideResponseTimeToggle)
             || $hideResponseTimeToggle === false
         ) {
-            echo '
+            echo '<p style="color: white; margin-bottom: 0;">Show response times:&nbsp; 
         <input name="responseTimeToggle"
             ';
             if (isset($showResponseTimes) && $showResponseTimes === true) {
@@ -86,9 +86,9 @@ if (isset($verifyLogin) && !empty($verifyLogin) && $verifyLogin === true){
             }
             echo '
                id="responseTimeToggle" type="checkbox" data-toggle="toggle"
-               data-on="Response times" data-off="Just uptime"
+               data-on="ON" data-off="OFF"
                data-onstyle="success" data-offstyle="secondary"
-               data-style="susi">
+               data-style="susi"></p>
            ';
         }
         ?>
