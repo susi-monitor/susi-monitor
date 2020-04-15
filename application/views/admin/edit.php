@@ -1,12 +1,13 @@
 <main role="main">
-    <div style="min-height: 100px;"></div>
+    <div style="min-height: 50px;"></div>
 
     <div class="container">
 
         <?php echo form_open('admin/editAction/'); ?>
 
         <?php
-        echo '<div class="form-group">';
+        echo '  <h1>Edit target</h1>
+  <div class="form-group">';
         ?>
         <div>
             <?php echo validation_errors('<br><b>⚠️&nbsp;', '</b>'); ?>

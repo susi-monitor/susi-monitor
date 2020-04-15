@@ -55,10 +55,14 @@ if (isset($showResponseTimes) && $showResponseTimes === true && !empty($target_d
             $values .= ','.$check['response_time'];
         }
         $lastValueItem = end($dataReversed);
-        if ($lastValueItem['status'] === '0'){
+
+        if ($lastValueItem['status'] === '0' && $lastValueItem['response_time'] > 0) {
+            $backgroundColor = 'rgb(246,227,28)';
+            $borderColor = 'rgb(198,183,22)';
+        } elseif ($lastValueItem['response_time'] == 0) {
             $backgroundColor = 'rgb(194,45,45)';
             $borderColor = 'rgb(87,9,9)';
-        }else{
+        } else {
             $backgroundColor = 'rgb(100,171,100)';
             $borderColor = 'rgb(40,167,69)';
         }

@@ -19,6 +19,7 @@ class Admin extends CI_Controller
         $data['categories'] = $this->target_model->get_categories();
         $data['verifyLogin'] = true;
         $data['removeFooterLinks'] = true;
+        $data['hideResponseTimeToggle'] = true;
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/index', $data);
@@ -34,6 +35,7 @@ class Admin extends CI_Controller
         $data['categories'] = $this->target_model->get_categories();
         $data['removeFooterLinks'] = true;
         $data['verifyLogin'] = true;
+        $data['hideResponseTimeToggle'] = true;
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/add', $data);
@@ -53,6 +55,7 @@ class Admin extends CI_Controller
         $data['categories'] = $this->target_model->get_categories();
         $data['removeFooterLinks'] = true;
         $data['verifyLogin'] = true;
+        $data['hideResponseTimeToggle'] = true;
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/edit', $data);
@@ -66,6 +69,7 @@ class Admin extends CI_Controller
         $data['target_data'] = $this->data_model->get_data();
         $data['removeFooterLinks'] = true;
         $data['verifyLogin'] = true;
+        $data['hideResponseTimeToggle'] = true;
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/delete', $data);
@@ -79,6 +83,7 @@ class Admin extends CI_Controller
 
         $data['title'] = PAGE_TITLE.' - Add monitoring target';
         $data['verifyLogin'] = true;
+        $data['hideResponseTimeToggle'] = true;
 
         $this->form_validation->set_rules('inputName', 'Name', 'required');
         $this->form_validation->set_rules('inputURL', 'URL', 'required');
@@ -101,6 +106,7 @@ class Admin extends CI_Controller
             $data['target_data'] = $this->data_model->get_data();
             $data['categories'] = $this->target_model->get_categories();
             $data['removeFooterLinks'] = true;
+            $data['hideResponseTimeToggle'] = true;
 
             $this->load->view('templates/header', $data);
             $this->load->view('admin/index', $data);
@@ -123,6 +129,7 @@ class Admin extends CI_Controller
                 'inputCategory'
             ),
         );
+        $data['hideResponseTimeToggle'] = true;
 
         $this->form_validation->set_rules('inputName', 'Name', 'required');
         $this->form_validation->set_rules('inputURL', 'URL', 'required');
@@ -146,6 +153,7 @@ class Admin extends CI_Controller
             $data['target_data'] = $this->data_model->get_data();
             $data['categories'] = $this->target_model->get_categories();
             $data['removeFooterLinks'] = true;
+            $data['hideResponseTimeToggle'] = true;
 
             $this->load->view('templates/header', $data);
             $this->load->view('admin/index', $data);
@@ -163,6 +171,7 @@ class Admin extends CI_Controller
         $data['target_data'] = $this->data_model->get_data();
         $data['categories'] = $this->target_model->get_categories();
         $data['removeFooterLinks'] = true;
+        $data['hideResponseTimeToggle'] = true;
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/index', $data);
@@ -176,6 +185,7 @@ class Admin extends CI_Controller
 
         $data['title'] = PAGE_TITLE.' - Administration';
         $data['removeFooterLinks'] = true;
+        $data['hideResponseTimeToggle'] = true;
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/login', $data);
@@ -190,6 +200,7 @@ class Admin extends CI_Controller
 
         $data['title'] = PAGE_TITLE.' - Administration';
         $data['removeFooterLinks'] = true;
+        $data['hideResponseTimeToggle'] = true;
 
         if ($this->input->post('password') === ADMIN_PASSWORD){
             session_start();

@@ -1,12 +1,12 @@
 <main role="main">
-    <div style="min-height: 100px;"></div>
+    <div style="min-height: 50px;"></div>
 
     <div class="container">
 
         <div class="row">
 
             <?php echo form_open('admin/addAction'); ?>
-
+            <h1>Add new target</h1>
             <div class="form-group">
                 <div>
                     <?php echo validation_errors('<br><b>⚠️&nbsp;', '</b>'); ?>

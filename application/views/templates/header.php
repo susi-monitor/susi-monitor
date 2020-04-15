@@ -74,15 +74,23 @@ if (isset($verifyLogin) && !empty($verifyLogin) && $verifyLogin === true){
                 min-width: 9rem;
             }
         </style>
+        <?php
+        if (!isset($hideResponseTimeToggle)
+            || $hideResponseTimeToggle === false
+        ) {
+            echo '
         <input name="responseTimeToggle"
-            <?php
+            ';
             if (isset($showResponseTimes) && $showResponseTimes === true) {
                 echo 'checked';
             }
-            ?>
+            echo '
                id="responseTimeToggle" type="checkbox" data-toggle="toggle"
                data-on="Response times" data-off="Just uptime"
                data-onstyle="success" data-offstyle="secondary"
                data-style="susi">
+           ';
+        }
+        ?>
     </nav>
 </header>
