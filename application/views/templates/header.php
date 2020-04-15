@@ -64,7 +64,7 @@ if (isset($verifyLogin) && !empty($verifyLogin) && $verifyLogin === true){
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="<?php echo site_url(''); ?>">Uptime status</a>
+                    <a class="nav-link" href="<?php echo site_url(''); ?>">Service monitor</a>
                 </li>
             </ul>
         </div>
