@@ -19,13 +19,17 @@ class Target extends CI_Controller {
 
         $data['categories'] = $this->target_model->get_categories();
 
-        if(isset($_GET['showResponseTimes']) && $_GET['showResponseTimes'] === 'true'){
+        if ((isset($_GET['showResponseTimes'])
+                && $_GET['showResponseTimes'] === 'true')
+            || (isset($_COOKIE['showResponseTimes'])
+                && $_COOKIE['showResponseTimes'] === 'yes')
+        ) {
             $data['showResponseTimes'] = true;
         }
 
         $this->load->view('templates/header', $data);
         $this->load->view('target/index', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer', $data);
     }
 
     public function view_category($category = NULL)
@@ -45,7 +49,7 @@ class Target extends CI_Controller {
 
         $this->load->view('templates/header', $data);
         $this->load->view('target/index', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer', $data);
     }
 
     public function details($targetId = NULL)

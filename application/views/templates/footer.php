@@ -17,6 +17,22 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+<!-- Handling the uptime/response time toggle -->
+<script type="text/javascript">
+    $(function () {
+        $('#responseTimeToggle').change(function () {
+            if ($(this).prop('checked') == true) {
+                document.cookie = "showResponseTimes=yes";
+                location.reload();
+            } else {
+                document.cookie = "showResponseTimes=no";
+                location.reload();
+            }
+        })
+    })
+</script>
+<!-- Scroll back to top script -->
 <script type="text/javascript">
     function scrollToTop() {
         if ('scrollRestoration' in history) {

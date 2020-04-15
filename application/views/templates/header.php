@@ -19,8 +19,8 @@ if (isset($verifyLogin) && !empty($verifyLogin) && $verifyLogin === true){
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           rel="stylesheet">
-
-    <!-- Favicons TO DO-->
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+          rel="stylesheet">
 
     <style>
         .bd-placeholder-img {
@@ -68,5 +68,21 @@ if (isset($verifyLogin) && !empty($verifyLogin) && $verifyLogin === true){
                 </li>
             </ul>
         </div>
+        <style>
+            .toggle.susi, .toggle-on.susi, .toggle-off.susi {
+                max-height: 1.5rem;
+                min-width: 9rem;
+            }
+        </style>
+        <input name="responseTimeToggle"
+            <?php
+            if (isset($showResponseTimes) && $showResponseTimes === true) {
+                echo 'checked';
+            }
+            ?>
+               id="responseTimeToggle" type="checkbox" data-toggle="toggle"
+               data-on="Response times" data-off="Just uptime"
+               data-onstyle="success" data-offstyle="secondary"
+               data-style="susi">
     </nav>
 </header>
