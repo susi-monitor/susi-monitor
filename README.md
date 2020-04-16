@@ -4,7 +4,7 @@
 # susi-monitor
 **SU**per **SI**mple uptime monitor
 
-## What is it?
+## What does it do?
 As name suggests it is a simple uptime monitoring system written in PHP.
 The point is to present uptime in a clear form, together with uptime graphs, all while keeping
 maximal simplicity of the software. 
