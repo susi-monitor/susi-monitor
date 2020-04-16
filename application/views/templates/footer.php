@@ -57,10 +57,10 @@ if (isset($showResponseTimes) && $showResponseTimes === true && !empty($target_d
         $lastValueItem = end($dataReversed);
 
         if ($lastValueItem['status'] === '0' && $lastValueItem['response_time'] > 0) {
-            $backgroundColor = 'rgb(246,227,28)';
+            $backgroundColor = 'rgba(246,227,28, 0.66)';
             $borderColor = 'rgb(198,183,22)';
         } elseif ($lastValueItem['response_time'] == 0) {
-            $backgroundColor = 'rgb(194,45,45)';
+            $backgroundColor = 'rgba(194,45,45, 0.66)';
             $borderColor = 'rgb(87,9,9)';
         } else {
             $backgroundColor = 'rgb(100,171,100)';
@@ -112,7 +112,7 @@ if (isset($showResponseTimes) && $showResponseTimes === true && !empty($target_d
             labels: [".$labels."],
             datasets: [{
                 label: 'status',
-                backgroundColor: 'rgb(34,146,255)',
+                backgroundColor: 'rgba(44, 105, 190, 0.66)',
                 borderColor: 'rgb(34,146,255)',
                 data: [".$valuesWithLabels."]
             }]
