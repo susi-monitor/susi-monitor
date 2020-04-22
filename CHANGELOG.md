@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
-
+- Allow 401 and 403 as success codes
 ### Removed
 
 ## [1.2.0] - 2020-04-16
