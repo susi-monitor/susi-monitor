@@ -68,7 +68,7 @@ class Data extends CI_Controller
         if ($checkIfJSONContentType === true) {
             if (!curl_errno($handle)) {
                 $responseCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
-                if (in_array($responseCode, ['200', '301', '302'], false)) {
+                if (in_array($responseCode, ['200', '301', '302', '401', '403'], false)) {
                     $contentType = curl_getinfo($handle, CURLINFO_CONTENT_TYPE);
                     if (strpos($contentType, 'json') === false) {
                         return false;
@@ -127,7 +127,7 @@ class Data extends CI_Controller
                         $HTTPCode = $HTTPCode['output'];
                     }
 
-                    if (in_array($HTTPCode, ['200', '301', '302'], false)) {
+                    if (in_array($HTTPCode, ['200', '301', '302', '401', '403'], false)) {
                         $this->insertData($target['id'], 1, $responseTime);
                     } else {
                         $this->insertData($target['id'], 0, $responseTime);
