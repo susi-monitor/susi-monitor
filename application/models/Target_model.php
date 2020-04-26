@@ -64,12 +64,24 @@ class Target_model extends CI_Model {
 
     public function add()
     {
+        if (strlen($this->input->post('inputCategory')) < 1) {
+            $category = null;
+        } else {
+            $category = $this->input->post('inputCategory');
+        }
+
+        if ($this->input->post('inputTimeout') == '0' || strlen($this->input->post('inputTimeout')) < 1) {
+            $timeout = null;
+        } else {
+            $timeout = $this->input->post('inputTimeout');
+        }
 
         $data = array(
             'name' => $this->input->post('inputName'),
             'url' => $this->input->post('inputURL'),
             'type' => $this->input->post('inputType'),
-            'category' => $this->input->post('inputCategory')
+            'category' => $category,
+            'timeout' => $timeout,
         );
 
         return $this->db->insert('targets', $data);
@@ -92,7 +104,14 @@ class Target_model extends CI_Model {
             $category = $this->input->post('inputCategory');
         }
 
+        if ($this->input->post('inputTimeout') == '0' || strlen($this->input->post('inputTimeout')) < 1) {
+            $timeout = null;
+        } else {
+            $timeout = $this->input->post('inputTimeout');
+        }
+
         $this->db->set('category', $category);
+        $this->db->set('timeout', $timeout);
 
         $this->db->where('id', $this->input->post('inputId'));
 

@@ -41,10 +41,31 @@
                                 <br><b>json</b> -> same as above AND check if it is a valid JSON</small>
                         </div>
                         <div class="form-group">
+                <p>
+                    <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#collapseAdditionalOptions" aria-expanded="false" aria-controls="collapseAdditionalOptions">
+                        Additional options
+                    </button>
+                </p>
+                <div class="collapse" id="collapseAdditionalOptions">
+                    <div class="card card-body">
+                        <div class="form-group">
                             <label for="inputCategory">Category (optional)</label>
-                            <input type="text" class="form-control" id="inputCategory" aria-describedby="categoryHelp" name="inputCategory" maxlength="128" value="'.$target['category'].'">
-                            <small id="categoryHelp" class="form-text text-muted">Match one of existing categories or add a new one.</small>
+                            <input type="text" class="form-control" id="inputCategory"
+                                   aria-describedby="categoryHelp" name="inputCategory"
+                                   maxlength="128" value="'.$target['category'].'">
+                            <small id="categoryHelp" class="form-text text-muted">Match
+                                one of existing categories or add a new one.</small>
                         </div>
+                        <div class="form-group">
+                            <label for="inputTimeout">Timeout (optional)</label>
+                            <input type="number" class="form-control" id="inputTimeout"
+                                   aria-describedby="timeoutHelp" name="inputTimeout"
+                                   maxlength="11" min="0" value="'.$target['timeout'].'">
+                            <small id="timeoutHelp" class="form-text text-muted">Provided in seconds.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <button type="button" class="btn btn-secondary" onclick="location.href = \''.site_url('/admin/').'\';">Back</button>
                     </form>
