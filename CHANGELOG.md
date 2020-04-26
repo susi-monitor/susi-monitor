@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - sorting and searching in admin list using DataTables
 ### Changed
 - 401 and 403 HTTP codes don't fail check from now on
-- move custom configuration to `application/config/susi-config.php`
+- move the custom configuration to `application/config/susi-config.php`
 ### Removed
 
 ## [1.2.0] - 2020-04-16
