@@ -38,8 +38,10 @@ class Data extends CI_Controller
     protected function callURL(
         $url,
         $returnHTTPCode = false,
-        $checkIfJSONContentType = false
+        $checkIfJSONContentType = false,
+        $setTimeout = null
     ) {
+        $timeoutReached = false;
         $handle = curl_init();
         curl_setopt($handle, CURLOPT_URL, $url);
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
@@ -54,6 +56,10 @@ class Data extends CI_Controller
             curl_setopt($handle, CURLOPT_PROXYUSERPWD, PROXY_CREDENTIALS);
         }
 
+        if (!is_null($setTimeout)){
+            curl_setopt($handle, CURLOPT_TIMEOUT, $setTimeout);
+        }
+
         $output = curl_exec($handle);
         $responseTime =  curl_getinfo($handle, CURLINFO_STARTTRANSFER_TIME);
 
@@ -62,6 +68,9 @@ class Data extends CI_Controller
                 $output = curl_getinfo($handle, CURLINFO_HTTP_CODE);
             } else {
                 $output = curl_errno($handle);
+                if (curl_errno($handle) === 28) {
+                    $timeoutReached = true;
+                }
             }
         }
 
@@ -71,19 +80,22 @@ class Data extends CI_Controller
                 if (in_array($responseCode, ['200', '301', '302', '401', '403'], false)) {
                     $contentType = curl_getinfo($handle, CURLINFO_CONTENT_TYPE);
                     if (strpos($contentType, 'json') === false) {
-                        return false;
+                        $output = false;
                     }
                 } else {
-                    return false;
+                    $output = false;
                 }
             } else {
-                return false;
+                if (curl_errno($handle) === 28) {
+                    $timeoutReached = true;
+                }
+                $output = false;
             }
         }
 
         curl_close($handle);
 
-        return array('output'=>$output, 'responseTime'=>$responseTime);
+        return array('output'=>$output, 'responseTime'=>$responseTime, 'timeoutReached'=>$timeoutReached);
     }
 
     private function isItAssociativeTable($arr)
@@ -104,8 +116,8 @@ class Data extends CI_Controller
             switch ($target['type']) {
                 case 'json':
                     //check if the URL serves proper JSON
-                    $output = $this->callURL($target['url'], false, true);
-                    if (is_array($output) && isset($output['responseTime'])) {
+                    $output = $this->callURL($target['url'], false, true, $target['timeout']);
+                    if (is_array($output) && $output['output']!== false && isset($output['responseTime'])) {
                         $responseTime = $output['responseTime'];
                         $output = $output['output'];
                     }
@@ -115,12 +127,16 @@ class Data extends CI_Controller
                     ) {
                         $this->insertData($target['id'], 1, $responseTime);
                     } else {
-                        $this->insertData($target['id'], 0, $responseTime);
+                        if ($output['timeoutReached'] === true){
+                            $this->insertData($target['id'], 0, $responseTime, 1);
+                        } else {
+                            $this->insertData($target['id'], 0, $responseTime, 0);
+                        }
                     }
                     break;
                 default:
                     //check if the URL is alive
-                    $HTTPCode = $this->callURL($target['url'], true);
+                    $HTTPCode = $this->callURL($target['url'], true, false, $target['timeout']);
 
                     if (is_array($HTTPCode) && isset($HTTPCode['responseTime']) && !is_int($HTTPCode)){
                         $responseTime = $HTTPCode['responseTime'];
@@ -139,13 +155,14 @@ class Data extends CI_Controller
         return true;
     }
 
-    protected function insertData($targetId, $status, $responseTime)
+    protected function insertData($targetId, $status, $responseTime, $timeoutReached)
     {
         return $this->data_model->insert_check_data(
             $targetId,
             $status,
             date('U'),
-            $responseTime
+            $responseTime,
+            $timeoutReached
         );
     }
 

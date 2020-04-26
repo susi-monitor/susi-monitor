@@ -32,13 +32,14 @@ class Data_model extends CI_Model
         return $resultSorted;
     }
 
-    public function insert_check_data($tagetId, $status, $datetime, $responseTime)
+    public function insert_check_data($tagetId, $status, $datetime, $responseTime, $timeoutReached)
     {
         $data = array(
             'target_id' => $tagetId,
             'status'  => $status,
             'datetime'  => $datetime,
-            'response_time' => $responseTime
+            'response_time' => $responseTime,
+            'timeout_reached' => $timeoutReached
         );
 
         return $this->db->insert('data', $data);
