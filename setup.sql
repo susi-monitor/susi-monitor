@@ -9,32 +9,40 @@
 -- Create table with targets for monitoring
 --
 
-CREATE TABLE `targets` (
-  `id` int(11) NOT NULL,
-  `name` varchar(256) COLLATE utf8_bin DEFAULT NULL,
-  `url` text COLLATE utf8_bin DEFAULT NULL,
-  `type` varchar(256) COLLATE utf8_bin DEFAULT NULL,
-  `category` varchar(256) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+CREATE TABLE `targets`
+(
+    `id`       int(11) NOT NULL,
+    `name`     varchar(256) COLLATE utf8_bin DEFAULT NULL,
+    `url`      text COLLATE utf8_bin         DEFAULT NULL,
+    `type`     varchar(256) COLLATE utf8_bin DEFAULT NULL,
+    `category` varchar(256) COLLATE utf8_bin DEFAULT NULL,
+    `timeout`  int(11)                       DEFAULT NULL COMMENT 'Timeout in seconds'
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8
+  COLLATE = utf8_bin;
 
 --
 -- Create table with series of data
 --
 
-CREATE TABLE `data` (
-  `id` int(11) NOT NULL,
-  `datetime` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  `target_id` int(11) NOT NULL,
-  `response_time` float NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+CREATE TABLE `data`
+(
+    `id`              int(11)    NOT NULL,
+    `datetime`        int(11)    NOT NULL,
+    `status`          tinyint(1) NOT NULL,
+    `target_id`       int(11)    NOT NULL,
+    `response_time`   float               DEFAULT NULL,
+    `timeout_reached` int(1)     NOT NULL DEFAULT 0
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8
+  COLLATE = utf8_bin;
 
 --
 -- Sample entry
 --
 
-INSERT INTO `targets` (`id`, `name`, `url`, `type`) VALUES
-(1, 'sample', 'https://jsonplaceholder.typicode.com/todos/1', 'json');
+INSERT INTO `targets` (`id`, `name`, `url`, `type`, `category`, `timeout`) VALUES
+(1, 'sample', 'https://jsonplaceholder.typicode.com/todos/1', 'json', NULL, NULL);
 
 --
 -- Set index and auto-increment
