@@ -4,3 +4,4 @@ This program uses these external software/assets:
 - Chart.js (MIT License) https://www.chartjs.org
 - jQuery (MIT License) https://jquery.org
 - Bootstrap4Toogle (MIT License) https://gitbrent.github.io/bootstrap4-toggle/
+- DataTables (MIT License) https://datatables.net/

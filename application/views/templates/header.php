@@ -21,6 +21,7 @@ if (isset($verifyLogin) && !empty($verifyLogin) && $verifyLogin === true){
           rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
           rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
     <style>
         .bd-placeholder-img {

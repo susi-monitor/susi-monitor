@@ -1,16 +1,26 @@
 <main role="main">
-    <div style="min-height: 100px;"></div>
+    <div style="min-height: 30px;"></div>
 
     <div class="container">
 
         <div class="row">
             <h1>Monitored Services</h1>
+            <div style="min-height: 30px;"></div>
+        </div>
+        <div class="row" style="padding-bottom: 15px; padding-top: 15px;">
+            <div>
+                <a href="<?php echo site_url('/admin/add/'); ?>">
+                    <button type="button" class="btn btn-primary">➕ Add new</button>
+                </a>
+            </div>
+        </div>
+        <div class="row">
             <?php
             if (isset($successMessage) && !empty($successMessage)) {
-                echo '<div style="padding-top: 50px; padding-bottom: 30px;"><br><b>✔️&nbsp;'.$successMessage.'</b><br></div>';
+                echo '<div style="padding-top: 10px; padding-bottom: 20px;"><br><b>✔️&nbsp;'.$successMessage.'</b><br></div>';
             }
             ?>
-            <table class="table table-hover">
+            <table class="table table-hover" id="admin-targets-list">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -48,10 +58,7 @@
                 ?>
                 </tbody>
             </table>
-            <br>
-            <a href="<?php echo site_url('/admin/add/'); ?>">
-                <button type="button" class="btn btn-primary">➕ Add new</button>
-            </a>
+
         </div><!-- /.row -->
 
     </div><!-- /.container -->

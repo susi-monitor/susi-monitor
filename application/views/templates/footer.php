@@ -18,6 +18,8 @@
 <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 <!-- Handling the uptime/response time toggle -->
 <script type="text/javascript">
     $(function () {
@@ -42,6 +44,11 @@
     }
 </script>
 <!-- graph data here if property with data provided -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#admin-targets-list').DataTable();
+    });
+</script>
 <?php
 if (isset($showResponseTimes) && $showResponseTimes === true && !empty($target_data)) {
     foreach ($target_data as $key => $data) {
