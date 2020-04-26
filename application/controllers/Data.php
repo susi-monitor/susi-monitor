@@ -113,41 +113,36 @@ class Data extends CI_Controller
     {
         foreach ($listOfTargets as $target) {
             $responseTime = null;
+            $timeoutReached = false;
+
             switch ($target['type']) {
                 case 'json':
                     //check if the URL serves proper JSON
                     $output = $this->callURL($target['url'], false, true, $target['timeout']);
-                    if (is_array($output) && $output['output']!== false && isset($output['responseTime'])) {
-                        $responseTime = $output['responseTime'];
-                        $output = $output['output'];
-                    }
 
-                    if (json_decode($output, true)
+                    if ($output['output']!== false && json_decode($output['output'], true)
                         && json_last_error() === JSON_ERROR_NONE
                     ) {
-                        $this->insertData($target['id'], 1, $responseTime);
+                        $this->insertData($target['id'], 1, $output['responseTime'], 0);
+                    } elseif ($output['timeoutReached'] === true) {
+                        $this->insertData($target['id'], 0, $output['responseTime'], 1);
                     } else {
-                        if ($output['timeoutReached'] === true){
-                            $this->insertData($target['id'], 0, $responseTime, 1);
-                        } else {
-                            $this->insertData($target['id'], 0, $responseTime, 0);
-                        }
+                        $this->insertData($target['id'], 0, $output['responseTime'], 0);
                     }
+
                     break;
                 default:
                     //check if the URL is alive
                     $HTTPCode = $this->callURL($target['url'], true, false, $target['timeout']);
 
-                    if (is_array($HTTPCode) && isset($HTTPCode['responseTime']) && !is_int($HTTPCode)){
-                        $responseTime = $HTTPCode['responseTime'];
-                        $HTTPCode = $HTTPCode['output'];
+                    if (is_numeric($HTTPCode['output']) && in_array($HTTPCode['output'], ['200', '301', '302', '401', '403'], false)) {
+                        $this->insertData($target['id'], 1, $HTTPCode['responseTime'], 0);
+                    } elseif ($HTTPCode['timeoutReached'] === true) {
+                        $this->insertData($target['id'], 0, $HTTPCode['responseTime'], 1);
+                    } else {
+                        $this->insertData($target['id'], 0, $HTTPCode['responseTime'], 0);
                     }
 
-                    if (in_array($HTTPCode, ['200', '301', '302', '401', '403'], false)) {
-                        $this->insertData($target['id'], 1, $responseTime);
-                    } else {
-                        $this->insertData($target['id'], 0, $responseTime);
-                    }
                     break;
             }
         }
