@@ -28,7 +28,7 @@
                     <th scope="col">URL</th>
                     <th scope="col">type</th>
                     <th scope="col">Category</th>
-                    <th scope="col">Timeout</th>
+                    <th scope="col">Timeout (s)</th>
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
