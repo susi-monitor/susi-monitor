@@ -4,11 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 
+## [1.3.0] - 2020-04-26
 ### Added
-
+- Option to mark check as failed if target doesn't reply within predefined timeout
+- sorting and searching in admin list using DataTables
 ### Changed
-- Allow 401 and 403 as success codes
+- 401 and 403 HTTP codes don't fail check from now on
+- move custom configuration to `application/config/susi-config.php`
 ### Removed
 
 ## [1.2.0] - 2020-04-16
