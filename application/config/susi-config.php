@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //Base URL of your site - typically	http://example.com/ - provide with trailing slash
 defined('BASEURL')  OR define('BASEURL', '');
 
-defined('RELEASE_VERSION')  OR define('RELEASE_VERSION', '1.3.1');
+defined('RELEASE_VERSION')  OR define('RELEASE_VERSION', '1.4.0');
 
 // Custom User Agent string
 defined('UA_STRING')  OR define('UA_STRING', 'SuSi Monitor v'.RELEASE_VERSION);
