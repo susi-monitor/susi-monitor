@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+require_once ('susi-version.php');
 
 /*
 | -------------------------------------------------------------------
@@ -10,10 +11,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | -------------------------------------------------------------------
 */
 
-//Base URL of your site - typically	http://example.com/ - provide with trailing slash
+// Base URL of your site - typically http://example.com/ - provide with trailing slash
+// This value HAS TO be set if you wish to use a domain name
 defined('BASEURL')  OR define('BASEURL', '');
-
-defined('RELEASE_VERSION')  OR define('RELEASE_VERSION', '1.4.0');
 
 // Custom User Agent string
 defined('UA_STRING')  OR define('UA_STRING', 'SuSi Monitor v'.RELEASE_VERSION);
@@ -27,6 +27,8 @@ defined('ADMIN_PASSWORD')  OR define('ADMIN_PASSWORD', 'admin');
 
 // Customized title
 define('PAGE_TITLE', 'SuSi Monitor');
+
+// Notification settings
 
 // Proxy settings
 defined('PROXY_ENABLED')  OR define('PROXY_ENABLED', 0);
