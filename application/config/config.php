@@ -25,6 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 // moved to susi-config.php
 require_once('susi-config.php');
+$config['base_url'] = BASEURL;
 
 /*
 |--------------------------------------------------------------------------
