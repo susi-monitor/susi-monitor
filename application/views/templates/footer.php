@@ -103,8 +103,8 @@ if (isset($showResponseTimes) && $showResponseTimes === true && !empty($target_d
         $values = '';
         foreach ($dataReversed as $check) {
             $formattedDate = date('d/m/y H:i', $check['datetime']);
-            $labels .= ",'".$formattedDate."'";
-            $values .= ','.$check['status'];
+            $labels .= "'".$formattedDate."',";
+            $values .= ''.$check['status'].',';
         }
         $valuesWithLabels = str_replace(
             '1',
