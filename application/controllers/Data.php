@@ -145,6 +145,10 @@ class Data extends CI_Controller
 
                     break;
             }
+
+            if (NOTIFICATIONS_ENABLED === true && $target['notifications_enabled'] == 1){
+                $this->checkIfNotificationNeeded($target['id']);
+            }
         }
 
         return true;
@@ -166,5 +170,103 @@ class Data extends CI_Controller
         return $this->data_model->purge_old_data();
     }
 
+    public function checkIfNotificationNeeded($targetId = null)
+    {
+        if ($targetId === null) {
+            return false;
+        }
+
+        $data['targetId'] = $targetId;
+
+        $data['target'] = $this->target_model->get_target_by_id($targetId)[0];
+        $data['target_data'] = $this->data_model->get_data_by_target_id($targetId);
+
+        if (($data['target_data'][$targetId][0]['status'] == 0) && ($data['target_data'][$targetId][1]['status'] == 1)) {
+            // SERVICE IS DOWN
+            $this->sendTeamsNotification($data['target']['name'], $data['target']['url'], $targetId, 'SERVICE_DOWN');
+
+        } elseif (($data['target_data'][$targetId][0]['status'] == 1) && ($data['target_data'][$targetId][1]['status'] == 0)) {
+            // SERVICE IS BACK UP
+            $lastSeen = $this->data_model->last_seen($targetId);
+            if ($lastSeen === 0) {
+                $lastSeenText = 'Over 48 hours ago';
+            } else {
+                $lastSeenText = date('H:i d/m/y T', $lastSeen);
+            }
+            $this->sendTeamsNotification($data['target']['name'], $data['target']['url'], $targetId, 'BACK_UP', $lastSeenText);
+        }
+
+        return true;
+    }
+
+    public function sendTeamsNotification($targetName, $targetURL, $targetId, $type = 'BACK_UP', $howLongDown = null)
+    {
+        if ($type === 'SERVICE_DOWN') {
+            $summary = $targetName . ' is down!';
+            $title = 'A service is down';
+            $themeColor = 'd41919';
+
+            $factsSection = array(
+                array(
+                    "name" => "Name",
+                    "value" => $targetName
+                ),
+                array("name" => "URL",
+                    "value" => $targetURL)
+            );
+
+        } elseif ($type === 'BACK_UP') {
+            $summary = $targetName . ' is back up!';
+            $title = 'A service is back up';
+            $themeColor = '29cf23';
+
+            $factsSection = array(
+                array(
+                    "name" => "Name",
+                    "value" => $targetName
+                ),
+                array("name" => "URL",
+                    "value" => $targetURL),
+                array("name" => "Has been down from",
+                    "value" => $howLongDown)
+            );
+        }
+
+        $data = array(
+            "@type" => "MessageCard",
+            "@context" => "http://schema.org/extensions",
+            "themeColor" => $themeColor,
+            "summary" => $summary,
+            "sections" => array(
+                "activityTitle" => $title,
+                "activityImage" => "https://raw.githubusercontent.com/susi-monitor/susi-monitor/master/img/android-chrome-192x192.png",
+                "facts" => $factsSection,
+                "markdown" => true
+            ),
+            "potentialAction" => array(
+                "@type" => "ActionCard",
+                "name" => "See last 24 hours of this service",
+                "actions" => array(
+                    "@type" => "OpenUri",
+                    "name" => "See last 24 hours of this service",
+                    "target" => site_url('/').'details/'.$targetId
+                )
+            ));
+
+        $handle = curl_init(TEAMS_WEBHOOK_URL);
+        curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($handle, CURLOPT_POST, 1);
+        curl_setopt($handle, CURLOPT_POSTFIELDS, json_encode($data));
+
+        curl_setopt($handle, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen(json_encode($data)))
+        );
+
+        $result = curl_exec($handle);
+        curl_close($handle);
+
+        return $result;
+    }
 
 }

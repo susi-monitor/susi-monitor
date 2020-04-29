@@ -16,7 +16,8 @@ CREATE TABLE `targets`
     `url`      text COLLATE utf8_bin         DEFAULT NULL,
     `type`     varchar(256) COLLATE utf8_bin DEFAULT NULL,
     `category` varchar(256) COLLATE utf8_bin DEFAULT NULL,
-    `timeout`  int(11)                       DEFAULT NULL COMMENT 'Timeout in seconds'
+    `timeout`  int(11)                       DEFAULT NULL COMMENT 'Timeout in seconds',
+    `notifications_enabled`  int(1)   NULL   DEFAULT '0'
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   COLLATE = utf8_bin;

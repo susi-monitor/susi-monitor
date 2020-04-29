@@ -62,6 +62,7 @@ $route['admin/add'] = 'admin/add';
 $route['admin/addAction'] = 'admin/add_action';
 $route['admin/login'] = 'admin/login';
 $route['admin/loginAction'] = 'admin/login_action';
+$route['notification'] = 'notification/checkIfNotificationNeeded';
 $route['category/(:any)'] = 'target/view_category/$1';
 $route['default_controller'] = 'target';
 $route['404_override'] = '';
