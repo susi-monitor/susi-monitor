@@ -17,7 +17,7 @@ require_once ('susi-version.php');
 | -------------------------------------------------------------------
 */
 
-/* Base URL of your site - typically http://example.com/ - provide with trailing slash
+/* Base URL of your site - typically http://example.com/
 This value HAS TO be set if you wish to use a domain name */
 defined('BASEURL')  OR define('BASEURL', '');
 
