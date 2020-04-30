@@ -181,11 +181,11 @@ class Data extends CI_Controller
         $data['target'] = $this->target_model->get_target_by_id($targetId)[0];
         $data['target_data'] = $this->data_model->get_data_by_target_id($targetId);
 
-        if (($data['target_data'][$targetId][0]['status'] == 0) && ($data['target_data'][$targetId][1]['status'] == 1)) {
+        if ((count($data['target_data'][$targetId]) > 1) && ($data['target_data'][$targetId][0]['status'] == 0) && ($data['target_data'][$targetId][1]['status'] == 1)) {
             // SERVICE IS DOWN
             $this->sendTeamsNotification($data['target']['name'], $data['target']['url'], $targetId, 'SERVICE_DOWN');
 
-        } elseif (($data['target_data'][$targetId][0]['status'] == 1) && ($data['target_data'][$targetId][1]['status'] == 0)) {
+        } elseif ((count($data['target_data'][$targetId]) > 1) && ($data['target_data'][$targetId][0]['status'] == 1) && ($data['target_data'][$targetId][1]['status'] == 0)) {
             // SERVICE IS BACK UP
             $lastSeen = $this->data_model->last_seen($targetId);
             if ($lastSeen === 0) {
