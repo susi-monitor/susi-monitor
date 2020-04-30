@@ -11,7 +11,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-
 ## [1.4.0] - 2020-04-30
 ### Added
 - Notifications to Microsoft Teams
