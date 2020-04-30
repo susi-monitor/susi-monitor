@@ -63,6 +63,13 @@
                                    maxlength="11" min="0">
                             <small id="timeoutHelp" class="form-text text-muted">Provided in seconds.</small>
                         </div>
+                        <div class="form-group">
+                            <label for="inputNotificationsEnabled">Enable notifications</label>
+                            <input type="checkbox" class="form-check-input" id="inputNotificationsEnabled"
+                                   aria-describedby="notificationsHelp" name="inputNotificationsEnabled"
+                                   value="checked" style="margin-left: 20px;">
+                            <small id="notificationsHelp" class="form-text text-muted">Sent to Microsoft Teams channel.</small>
+                        </div>
                     </div>
                 </div>
             </div>

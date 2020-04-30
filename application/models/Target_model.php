@@ -76,12 +76,19 @@ class Target_model extends CI_Model {
             $timeout = $this->input->post('inputTimeout');
         }
 
+        if ($this->input->post('inputNotificationsEnabled') == 'checked') {
+            $notificationsEnabled = 1;
+        } else {
+            $notificationsEnabled = 0;
+        }
+
         $data = array(
             'name' => $this->input->post('inputName'),
             'url' => $this->input->post('inputURL'),
             'type' => $this->input->post('inputType'),
             'category' => $category,
             'timeout' => $timeout,
+            'notifications_enabled' => $notificationsEnabled,
         );
 
         return $this->db->insert('targets', $data);
@@ -98,6 +105,7 @@ class Target_model extends CI_Model {
         $this->db->set('url', $this->input->post('inputURL'));
         $this->db->set('type', $this->input->post('inputType'));
 
+
         if (strlen($this->input->post('inputCategory')) < 1) {
             $category = null;
         } else {
@@ -110,8 +118,15 @@ class Target_model extends CI_Model {
             $timeout = $this->input->post('inputTimeout');
         }
 
+        if ($this->input->post('inputNotificationsEnabled') == 'checked') {
+            $notificationsEnabled = 1;
+        } else {
+            $notificationsEnabled = 0;
+        }
+
         $this->db->set('category', $category);
         $this->db->set('timeout', $timeout);
+        $this->db->set('notifications_enabled', $notificationsEnabled);
 
         $this->db->where('id', $this->input->post('inputId'));
 
