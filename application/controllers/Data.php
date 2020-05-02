@@ -242,21 +242,19 @@ class Data extends CI_Controller
                 "activityImage" => "https://raw.githubusercontent.com/susi-monitor/susi-monitor/master/img/android-chrome-192x192.png",
                 "facts" => $factsSection,
                 "markdown" => true
-            ),
-            "potentialAction" => array(
-                "@type" => "ActionCard",
-                "name" => "See last 24 hours of this service",
-                "actions" => array(
-                    "@type" => "OpenUri",
-                    "name" => "See last 24 hours of this service",
-                    "target" => site_url('/').'details/'.$targetId
-                )
             ));
 
         $handle = curl_init(TEAMS_WEBHOOK_URL);
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($handle, CURLOPT_POST, 1);
         curl_setopt($handle, CURLOPT_POSTFIELDS, json_encode($data));
+
+        if (PROXY_ENABLED == 1) {
+            curl_setopt($handle, CURLOPT_HTTPPROXYTUNNEL, PROXY_ENABLED);
+            curl_setopt($handle, CURLOPT_PROXY, PROXY_HOST);
+            curl_setopt($handle, CURLOPT_PROXYPORT, PROXY_PORT);
+            curl_setopt($handle, CURLOPT_PROXYUSERPWD, PROXY_CREDENTIALS);
+        }
 
         curl_setopt($handle, CURLOPT_HTTPHEADER, array(
                 'Content-Type: application/json',
