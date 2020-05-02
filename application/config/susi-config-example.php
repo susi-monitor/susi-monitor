@@ -34,11 +34,11 @@ define('PAGE_TITLE', 'SuSi Monitor');
 */
 
 /* Will not show option to enable notifications for target if set to false */
-defined('NOTIFICATIONS_ENABLED')  OR define('NOTIFICATIONS_ENABLED', false);
+defined('NOTIFICATIONS_ENABLED')  OR define('NOTIFICATIONS_ENABLED', true);
 
 /* Webhook URL for Microsoft Teams
   Instruction on how to obtain that: https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook */
-defined('TEAMS_WEBHOOK_URL')  OR define('TEAMS_WEBHOOK_URL', '');
+defined('TEAMS_WEBHOOK_URL')  OR define('TEAMS_WEBHOOK_URL', 'YOUR_WEBHOOK_URL_HERE');
 
 /*
 | -------------------------------------------------------------------

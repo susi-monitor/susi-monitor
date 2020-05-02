@@ -212,7 +212,8 @@ class Data extends CI_Controller
                     "value" => $targetName
                 ),
                 array("name" => "URL",
-                    "value" => $targetURL)
+                    "value" => $targetURL),
+                array('name'=>'Last 24 hours of that service', "value"=>"[click here]( ".site_url('/').'details/'.$targetId.")")
             );
 
         } elseif ($type === 'BACK_UP') {
@@ -228,7 +229,8 @@ class Data extends CI_Controller
                 array("name" => "URL",
                     "value" => $targetURL),
                 array("name" => "Has been down from",
-                    "value" => $howLongDown)
+                    "value" => $howLongDown),
+                array('name'=>'Last 24 hours of that service', "value"=>"[click here]( ".site_url('/').'details/'.$targetId.")")
             );
         }
 
@@ -237,12 +239,12 @@ class Data extends CI_Controller
             "@context" => "http://schema.org/extensions",
             "themeColor" => $themeColor,
             "summary" => $summary,
-            "sections" => array(
+            "sections" => array(array(
                 "activityTitle" => $title,
                 "activityImage" => "https://raw.githubusercontent.com/susi-monitor/susi-monitor/master/img/android-chrome-192x192.png",
                 "facts" => $factsSection,
                 "markdown" => true
-            ));
+            )));
 
         $handle = curl_init(TEAMS_WEBHOOK_URL);
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
@@ -263,7 +265,7 @@ class Data extends CI_Controller
 
         $result = curl_exec($handle);
         curl_close($handle);
-
+echo $result;
         return $result;
     }
 
