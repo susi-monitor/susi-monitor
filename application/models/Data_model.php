@@ -79,7 +79,7 @@ class Data_model extends CI_Model
             $resultSorted[$res['target_id']][] = $res;
         }
 
-        return $resultSorted[$target_id][0]['datetime'];
+        return $resultSorted[$target_id][1]['datetime'];
     }
 
     public function insert_check_data($tagetId, $status, $datetime, $responseTime, $timeoutReached)
