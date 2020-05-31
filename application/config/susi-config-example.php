@@ -58,3 +58,6 @@ defined('PROXY_CREDENTIALS')  OR define('PROXY_CREDENTIALS', 'someuser:somepassw
 /* MITM protection - disabled by default - set "2" to enforce checks */
 defined('VERIFYHOST')  OR define('VERIFYHOST', 0);
 defined('VERIFYPEER')  OR define('VERIFYPEER', 0);
+
+/* If set to true curl calls will be done using curl binary rather than libcurl */
+defined('SHELL_EXEC_CURL')  OR define('SHELL_EXEC_CURL', 0);
