@@ -49,11 +49,17 @@ defined('TEAMS_WEBHOOK_URL')  OR define('TEAMS_WEBHOOK_URL', 'YOUR_WEBHOOK_URL_H
 /* Custom User Agent string */
 defined('UA_STRING')  OR define('UA_STRING', 'SuSi Monitor v'.RELEASE_VERSION);
 
-/* Proxy settings */
+/* Proxy settings - uptime checking*/
 defined('PROXY_ENABLED')  OR define('PROXY_ENABLED', 0);
 defined('PROXY_HOST')  OR define('PROXY_HOST', 'exampleproxy.local');
 defined('PROXY_PORT')  OR define('PROXY_PORT', 8080);
 defined('PROXY_CREDENTIALS')  OR define('PROXY_CREDENTIALS', 'someuser:somepassword');
+
+/* Proxy settings - notifications*/
+defined('PROXY_ENABLED_NOTIFICATIONS')  OR define('PROXY_ENABLED_NOTIFICATIONS', 0);
+defined('PROXY_HOST_NOTIFICATIONS')  OR define('PROXY_HOST_NOTIFICATIONS', 'exampleproxy.local');
+defined('PROXY_PORT_NOTIFICATIONS')  OR define('PROXY_PORT_NOTIFICATIONS', 8080);
+defined('PROXY_CREDENTIALS_NOTIFICATIONS')  OR define('PROXY_CREDENTIALS_NOTIFICATIONS', 'someuser:somepassword');
 
 /* MITM protection - disabled by default - set "2" to enforce checks */
 defined('VERIFYHOST')  OR define('VERIFYHOST', 0);
