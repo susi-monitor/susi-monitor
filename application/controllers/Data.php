@@ -248,10 +248,10 @@ class Data extends CI_Controller
 
         if (SHELL_EXEC_CURL == 1) {
             $proxyString = '';
-            if (PROXY_ENABLED == 1 && PROXY_CREDENTIALS != 'someuser:somepassword') {
-                $proxyString = '-x ' . PROXY_CREDENTIALS . '@' . PROXY_HOST . ':' . PROXY_PORT;
-            } else if (PROXY_ENABLED == 1) {
-                $proxyString = '-x ' . PROXY_HOST . ':' . PROXY_PORT;
+            if (PROXY_ENABLED_NOTIFICATIONS == 1 && PROXY_CREDENTIALS_NOTIFICATIONS != 'someuser:somepassword') {
+                $proxyString = '-x ' . PROXY_CREDENTIALS_NOTIFICATIONS . '@' . PROXY_HOST_NOTIFICATIONS . ':' . PROXY_PORT_NOTIFICATIONS;
+            } else if (PROXY_ENABLED_NOTIFICATIONS == 1) {
+                $proxyString = '-x ' . PROXY_HOST_NOTIFICATIONS . ':' . PROXY_PORT_NOTIFICATIONS;
             }
             $result = shell_exec('curl ' . $proxyString . ' -H \'Content-Type: application/json\' -d \'' . json_encode($data) . '\' ' . TEAMS_WEBHOOK_URL);
         } else {
