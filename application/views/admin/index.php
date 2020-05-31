@@ -17,7 +17,7 @@
         <div class="row">
             <?php
             if (isset($successMessage) && !empty($successMessage)) {
-                echo '<div style="padding-top: 10px; padding-bottom: 20px;"><br><b>✔️&nbsp;'.$successMessage.'</b><br></div>';
+                echo '<div style="padding-top: 10px; padding-bottom: 20px;width: 100%;"><br><b>✔️&nbsp;'.$successMessage.'</b><br></div>';
             }
             ?>
             <table class="table table-hover" id="admin-targets-list">
