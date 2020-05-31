@@ -246,25 +246,37 @@ class Data extends CI_Controller
                 "markdown" => true
             )));
 
-        $handle = curl_init(TEAMS_WEBHOOK_URL);
-        curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($handle, CURLOPT_POST, 1);
-        curl_setopt($handle, CURLOPT_POSTFIELDS, json_encode($data));
+        if (SHELL_EXEC_CURL == 1) {
+            $proxyString = '';
+            if (PROXY_ENABLED == 1 && PROXY_CREDENTIALS != 'someuser:somepassword') {
+                $proxyString = '-x ' . PROXY_CREDENTIALS . '@' . PROXY_HOST . ':' . PROXY_PORT;
+            } else if (PROXY_ENABLED == 1) {
+                $proxyString = '-x ' . PROXY_HOST . ':' . PROXY_PORT;
+            }
+            $result = shell_exec('curl ' . $proxyString . ' -H \'Content-Type: application/json\' -d \'' . json_encode($data) . '\' ' . TEAMS_WEBHOOK_URL);
+        } else {
+            $handle = curl_init(TEAMS_WEBHOOK_URL);
+            curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($handle, CURLOPT_POST, 1);
+            curl_setopt($handle, CURLOPT_POSTFIELDS, json_encode($data));
 
-        if (PROXY_ENABLED == 1) {
-            curl_setopt($handle, CURLOPT_HTTPPROXYTUNNEL, PROXY_ENABLED);
-            curl_setopt($handle, CURLOPT_PROXY, PROXY_HOST);
-            curl_setopt($handle, CURLOPT_PROXYPORT, PROXY_PORT);
-            curl_setopt($handle, CURLOPT_PROXYUSERPWD, PROXY_CREDENTIALS);
+            if (PROXY_ENABLED == 1) {
+                curl_setopt($handle, CURLOPT_HTTPPROXYTUNNEL, PROXY_ENABLED);
+                curl_setopt($handle, CURLOPT_PROXY, PROXY_HOST);
+                curl_setopt($handle, CURLOPT_PROXYPORT, PROXY_PORT);
+                curl_setopt($handle, CURLOPT_PROXYUSERPWD, PROXY_CREDENTIALS);
+            }
+
+            curl_setopt($handle, CURLOPT_HTTPHEADER, array(
+                    'Content-Type: application/json',
+                    'Content-Length: ' . strlen(json_encode($data)))
+            );
+
+            $result = curl_exec($handle);
+            curl_close($handle);
         }
 
-        curl_setopt($handle, CURLOPT_HTTPHEADER, array(
-                'Content-Type: application/json',
-                'Content-Length: ' . strlen(json_encode($data)))
-        );
 
-        $result = curl_exec($handle);
-        curl_close($handle);
 echo $result;
         return $result;
     }
