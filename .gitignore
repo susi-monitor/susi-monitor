@@ -19,6 +19,11 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /vendor/
 
 /susi-monitor
+/previous
+/bin
+
+/application/config/database.php
+/application/config/susi-config.php
 
 # IDE Files
 #-------------------------
